@@ -16,9 +16,9 @@ Uses Code::Blocks IDE to build, like the rest of the project.
 
 Click on 'sqlite.cbp'
 
-Code::Blocks will open up and already have the appropriate files laid out. Hit the compile button.
+Code::Blocks will open and already have the appropriate files laid out. Hit the compile button.
 
-object file named 'sqlite.o' will be dumped into a obj/ directory. Move sqlite.o into this directory.
+object file named 'sqlite.o' will be dumped into an obj/ directory. Move sqlite.o into this directory (tools/sqlite) so it can be used by the rest of the project.
 
 
 
@@ -26,4 +26,4 @@ object file named 'sqlite.o' will be dumped into a obj/ directory. Move sqlite.o
 Advanced
 -------------------------------
 
-Can download newer SQLite source from https://sqlite.org/download.html. Unpack the files into here and make the necessary adjustments to the build.
+Can download newer SQLite source from https://sqlite.org/download.html. Unpack the files into tools/sqlite and make the necessary adjustments to build a custom version.
