@@ -1,0 +1,8 @@
+#
+# Linguist
+#
+
+*.cpp linguist-language=C++
+*.hpp linguist-language=C++
+*.c linguist-language=C
+*.h linguist-language=C
