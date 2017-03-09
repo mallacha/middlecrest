@@ -22,6 +22,18 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
+			<Add option="-DSQLITE_THREADSAFE=0" />
+			<Add option="-DSQLITE_DEFAULT_MEMSTATUS=0" />
+			<Add option="-DSQLITE_OMIT_DEPRECATED" />
+			<Add option="-DSQLITE_DEFAULT_WAL_SYNCHRONOUS=1" />
+			<Add option="-DSQLITE_LIKE_DOESNT_MATCH_BLOBS" />
+			<Add option="-DSQLITE_MAX_EXPR_DEPTH=0" />
+			<Add option="-DSQLITE_OMIT_DECLTYPE" />
+			<Add option="-DSQLITE_OMIT_PROGRESS_CALLBACK" />
+			<Add option="-DSQLITE_OMIT_SHARED_CACHE" />
+			<Add option="-DSQLITE_TEMP_STORE=2" />
+			<Add option="-DSQLITE_OMIT_AUTOINIT" />
+			<Add option="-DSQLITE_OMIT_COMPILEOPTION_DIAGS" />
 		</Compiler>
 		<Unit filename="shell.c">
 			<Option compilerVar="CC" />
