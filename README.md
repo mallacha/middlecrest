@@ -8,11 +8,11 @@ Middlecrest (provisional name) is a roguelike that will feature a world with pro
 
 SQLite powers the game. Complete information resides at tools/sqlite but here's a short synopsis:
 
-For Linux/MacOS/*nix/etc.
-`$ cd tools/sqlite`
+For Linux/MacOS/*nix/etc.:<br>
+`$ cd tools/sqlite`<br>
 `tools/sqlite$ make`
 
-For Windows:
+For Windows:<br>
 Open up sqlite.cbp and compile.
 
 #### Cppcheck
