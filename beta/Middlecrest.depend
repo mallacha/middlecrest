@@ -1,0 +1,191 @@
+# depslib dependency file v1.0
+1460099524 source:c:\sean\game2\code\ascii.cpp
+	"../includes/ascii.hpp"
+	"../includes/service.hpp"
+
+1459668152 c:\sean\game2\includes\ascii.hpp
+	"lib.h"
+	"display.hpp"
+
+1489312452 c:\sean\game2\includes\lib.h
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<limits.h>
+	<curses.h>
+	<assert.h>
+	<iostream>
+
+1322550382 c:\pdcurses\win32a\curses.h
+	<stdarg.h>
+	<stddef.h>
+	<stdio.h>
+	<wchar.h>
+
+1454837266 c:\sean\game2\includes\display.hpp
+	"lib.h"
+	"logging.hpp"
+	"location.hpp"
+
+1442210912 c:\sean\game2\includes\logging.hpp
+	"lib.h"
+
+1454837810 c:\sean\game2\includes\location.hpp
+	"logging.hpp"
+	"configuration.hpp"
+
+1458281978 c:\sean\game2\includes\configuration.hpp
+	"lib.h"
+
+1460013694 c:\sean\game2\includes\service.hpp
+	"lib.h"
+	"logging.hpp"
+	"display.hpp"
+	"database.hpp"
+	"randomc.hpp"
+	"characterPool.hpp"
+	"event.hpp"
+	"frustum.hpp"
+	"game.hpp"
+
+1489302187 c:\sean\game2\includes\database.hpp
+	"lib.h"
+	"logging.hpp"
+	"sqlite3.h"
+
+1416438612 c:\sean\game2\includes\sqlite3.h
+	<stdarg.h>
+
+1489310473 c:\sean\game2\includes\randomc.hpp
+	"lib.h"
+	"logging.hpp"
+
+1489316571 c:\sean\game2\includes\characterpool.hpp
+	"lib.h"
+	"configuration.hpp"
+	"pool.hpp"
+	"character.hpp"
+	"logging.hpp"
+
+1489314441 c:\sean\game2\includes\pool.hpp
+	"lib.h"
+
+1488068298 c:\sean\game2\includes\character.hpp
+	"lib.h"
+	"configuration.hpp"
+	"object.hpp"
+
+1460114568 c:\sean\game2\includes\object.hpp
+	"lib.h"
+	"turnBased.hpp"
+
+1460107188 c:\sean\game2\includes\turnbased.hpp
+	"lib.h"
+	"configuration.hpp"
+
+1458551422 c:\sean\game2\includes\event.hpp
+	"lib.h"
+	"logging.hpp"
+	<vector>
+
+1489294882 c:\sean\game2\includes\frustum.hpp
+	"lib.h"
+	"cache.hpp"
+	"ascii.hpp"
+	"logging.hpp"
+
+1489294866 c:\sean\game2\includes\cache.hpp
+	"lib.h"
+
+1489316592 c:\sean\game2\includes\game.hpp
+	"../includes/lib.h"
+	"../includes/logging.hpp"
+	"../includes/utility.hpp"
+
+1488185834 c:\sean\game2\includes\utility.hpp
+	"../includes/lib.h"
+
+1489294866 source:c:\sean\game2\code\cache.cpp
+	"../includes/cache.hpp"
+	"../includes/utility.hpp"
+
+1488186974 source:c:\sean\game2\code\character.cpp
+	"../includes/character.hpp"
+	"../includes/service.hpp"
+	"../includes/utility.hpp"
+
+1489297455 source:c:\sean\game2\code\characterpool.cpp
+	"../includes/characterPool.hpp"
+	"../includes/service.hpp"
+	"../includes/command.hpp"
+
+1458515218 c:\sean\game2\includes\command.hpp
+	"character.hpp"
+	"event.hpp"
+
+1458551014 source:c:\sean\game2\code\command.cpp
+	"../includes/command.hpp"
+	"../includes/service.hpp"
+
+1489302862 source:c:\sean\game2\code\database.cpp
+	"../includes/database.hpp"
+	"../includes/configuration.hpp"
+	"../includes/service.hpp"
+	<fstream>
+
+1454837006 source:c:\sean\game2\code\display.cpp
+	"../includes/display.hpp"
+	"../includes/service.hpp"
+
+1458551532 source:c:\sean\game2\code\event.cpp
+	"../includes/event.hpp"
+	"../includes/service.hpp"
+
+1489295016 source:c:\sean\game2\code\frustrum.cpp
+	"../includes/frustum.hpp"
+	"../includes/service.hpp"
+
+1487938046 source:c:\sean\game2\code\game.cpp
+	"../includes/game.hpp"
+	"../includes/service.hpp"
+
+1454837810 source:c:\sean\game2\code\location.cpp
+	"../includes/service.hpp"
+
+1458205358 source:c:\sean\game2\code\logging.cpp
+	"../includes/logging.hpp"
+
+1489309944 source:c:\sean\game2\code\mersenne.cpp
+	"includes/randomc.hpp"
+	"../includes/service.hpp"
+
+1458548962 source:c:\sean\game2\code\object.cpp
+	"../includes/object.hpp"
+
+1489318557 source:c:\sean\game2\code\pool.cpp
+	"../includes/service.hpp"
+
+1488187066 source:c:\sean\game2\code\screens.cpp
+	"../includes/screens.hpp"
+	"../includes/service.hpp"
+
+1460099780 c:\sean\game2\includes\screens.hpp
+	"lib.h"
+
+1460013340 source:c:\sean\game2\code\service.cpp
+	"../includes/service.hpp"
+
+1460109232 source:c:\sean\game2\code\turnbased.cpp
+	"../includes/turnBased.hpp"
+
+1488185834 source:c:\sean\game2\code\utility.cpp
+	"../includes/utility.hpp"
+
+1489284995 source:c:\sean\game2\main.cpp
+	"includes/service.hpp"
+	"includes/screens.hpp"
+
+1489297842 source:c:\sean\game2\beta\main.cpp
+	"../includes/service.hpp"
+	"../includes/screens.hpp"
+

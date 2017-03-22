@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Project1" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Option virtualFolders="game\;" />
+		<Build>
+			<Target title="default">
+				<Option output="tests" prefix_auto="1" extension_auto="1" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-fomit-frame-pointer" />
+			<Add option="-DUNIT_TEST" />
+			<Add option="-DDEBUG" />
+			<Add option="-DBETA" />
+			<Add option="-DSUCCESS=1" />
+			<Add option="-DSKIPPED=-1" />
+			<Add directory="C:/pdcurses/win32a" />
+			<Add directory="C:/sean/game2" />
+		</Compiler>
+		<Linker>
+			<Add option="C:\pdcurses\win32\pdcurses.a" />
+			<Add option="C:\sean\game2\code\sqlite3.o" />
+			<Add directory="C:/sean/game2" />
+		</Linker>
+		<Unit filename="../../code/ascii.cpp">
+			<Option virtualFolder="game/" />
+		</Unit>
+		<Unit filename="../../code/cache.cpp">
+			<Option virtualFolder="game/" />
+		</Unit>
+		<Unit filename="../../code/character.cpp">
+			<Option virtualFolder="game/" />
+		</Unit>
+		<Unit filename="../../code/characterPool.cpp">
+			<Option virtualFolder="game/" />
+		</Unit>
+		<Unit filename="../../code/command.cpp">
+			<Option virtualFolder="game/" />
+		</Unit>
+		<Unit filename="../../code/database.cpp">
+			<Option virtualFolder="game/" />
+		</Unit>
+		<Unit filename="../../code/event.cpp">
+			<Option virtualFolder="game/" />
+		</Unit>
+		<Unit filename="../../code/game.cpp">
+			<Option virtualFolder="game/" />
+		</Unit>
+		<Unit filename="../../code/location.cpp">
+			<Option virtualFolder="game/" />
+		</Unit>
+		<Unit filename="../../code/logging.cpp">
+			<Option virtualFolder="game/" />
+		</Unit>
+		<Unit filename="../../code/mersenne.cpp">
+			<Option virtualFolder="game/" />
+		</Unit>
+		<Unit filename="../../code/object.cpp">
+			<Option virtualFolder="game/" />
+		</Unit>
+		<Unit filename="../../code/pool.cpp">
+			<Option virtualFolder="game/" />
+		</Unit>
+		<Unit filename="../../code/screens.cpp">
+			<Option virtualFolder="game/" />
+		</Unit>
+		<Unit filename="../../code/service.cpp">
+			<Option virtualFolder="game/" />
+		</Unit>
+		<Unit filename="../../code/turnBased.cpp">
+			<Option virtualFolder="game/" />
+		</Unit>
+		<Unit filename="../../code/utility.cpp">
+			<Option virtualFolder="game/" />
+		</Unit>
+		<Unit filename="../code/characterPoolTest.cpp" />
+		<Unit filename="../code/displayTest.cpp" />
+		<Unit filename="../code/locationTest.cpp" />
+		<Unit filename="../code/mersenneTest.cpp" />
+		<Unit filename="../code/poolTest.cpp" />
+		<Unit filename="../code/testHarness.cpp" />
+		<Unit filename="../includes/characterPoolTest.hpp" />
+		<Unit filename="../includes/displayTest.hpp" />
+		<Unit filename="../includes/poolTest.hpp" />
+		<Unit filename="../includes/randomcTest.hpp" />
+		<Unit filename="../includes/testHarness.hpp" />
+		<Unit filename="../main.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

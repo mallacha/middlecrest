@@ -1,0 +1,10 @@
+The project in this directory is the DEVELOPMENT version. This means that DEBUG, ASSERTION_TEST, and BETA compile-time defines are enabled (Project->Build options->Middlecrest->#defines). DEVELOPMENT is not a seperate state and is synonymous with alpha-release. The tests folder has a similar setup.
+
+
+--------------------------
+Future considerations
+--------------------------
+
+BETA has ASSERTION_TESTS turned off. BETA should be tested prior to beta release.
+
+PRODUCTION has DEBUG and ASSERTION_TEST turned off. PRODUCTION builds should be minimally tested in alpha and tested during beta release.

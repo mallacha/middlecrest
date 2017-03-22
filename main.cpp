@@ -1,7 +1,6 @@
-#include "core/includes/lib.h"
-#include "game/includes/service.hpp"
-#include "game/includes/configuration.hpp"
-#include "game/includes/game.hpp"
+#include "includes/service.hpp"
+
+#include "includes/screens.hpp"
 
 using namespace std;
 
@@ -19,49 +18,60 @@ int main(int argc, char *argv[])
         logger->attn("Application running in development/debug mode.");
     #endif
 
-    TRandomMersenne * random = new TRandomMersenne;
+    //Random number generator
+    TRandomMersenne * random = new TRandomMersenne();
     locator::provide(random);
-    /*IRand * rand1 = locator::getRNG();
-    long temp = rand1->IRandom(1, 100);*/
 
+    //Database service
     sqliteDatabase * database = new sqliteDatabase();
     locator::provide(database);
 
-    asciiDisplay * display = new asciiDisplay();
-    display->create();
-    locator::provide(display);
+    //Character service
+    characterPool * characters = new characterPool();
+    locator::provideCharacterService(characters);
+    characters->allocate(10, 1);
 
-    IGame * world = new game();
-    locator::provide(world);
-
-    characterPool * cPool = new characterPool();
-    cPool->allocate(5, 3);
-    cPool->createPC(); //TODO: characters tied to state object
-    locator::provide(cPool); //Register
-    IZoneCache * location = new zoneCache();
-    locator::provide(location);
-    /*MCLocation * location2 = locator::getLocation();
-    location2->initialize();*/
-
+    //Event service
     IEvents * eventsObject = new events();
     locator::provide(eventsObject);
 
-    IDisplay * display2 = locator::getDisplay();
+    //Display service
+    IDisplay * display = new ascii();
+    locator::provide(display);
 
-//TODO: characterPool is a little funky. Creates a characterPool type whereas character creates a IPool type. Both need to be IPool type
-//      for service locator to give correct log message
+    //Game service
+    IGame * game = new middlecrest();
+    locator::provide(game);
 
-while(1) {
-    display2->draw();
-
-    cPool->process();
-
-    eventsObject->execute();
-    world->incrementTurn();
-    //cPool->createStatic();
+    game = locator::getGame();
+    game->initialize();
 
 
-    //system("PAUSE");
-}
-    //return EXIT_SUCCESS;
+    //Begin game
+    display->create();
+
+    loadSavedGame();
+
+    int ithElement = characters->createCharacter(PC);
+    //id = characters->createCharacter(NPC);
+    character * object = characters->getCharacterByPoolId(ithElement);
+
+    display = locator::getDisplay();
+    display->set(new cave());
+
+    display->randomStartingLocation(ithElement);
+
+    while(1) {
+        display->draw();
+
+        characters->process();
+
+        eventsObject->execute();
+    }
+
+    game->save();
+
+    //Create monsters and monster system
+    //Finish world creation (need to connect maps/zones)*/
+
 }
