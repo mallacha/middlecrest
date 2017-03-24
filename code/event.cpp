@@ -27,7 +27,7 @@ eventObject::eventObject(IEvent * object, unsigned int value)
 eventObject::~eventObject()
 {
     priority = 0;
-    if(NULL != event) {
+    if(event) {
         delete event;
     }
 }

@@ -16,10 +16,7 @@ class IEvent
 //Object interface
 {
     public:
-        IEvent() {}
-        ~IEvent() {}
-
-        virtual void execute() {} //Used by: events
+        virtual void execute() = 0; //Used by: events
 };
 
 class eventObject : public IEvent
@@ -45,9 +42,6 @@ class IEvents
 //Game events interface (movement, messages, etc.)
 {
     public:
-        IEvents() {}
-        ~IEvents() {}
-
         virtual void execute() = 0;
         virtual void add(IEvent *) = 0;
 };

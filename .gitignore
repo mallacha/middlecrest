@@ -18,6 +18,8 @@
 ######################
 *.log
 *.sql
+log.txt
+save/*
 
 # OS generated files #
 ######################
@@ -28,3 +30,7 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# SVN #
+#######
+*.svn

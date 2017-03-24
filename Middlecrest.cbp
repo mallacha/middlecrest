@@ -16,6 +16,9 @@
 					<Add option="-Wswitch-default" />
 					<Add option="-ansi" />
 				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
 			</Target>
 		</Build>
 		<Compiler>

@@ -14,17 +14,17 @@ class moveCharacter : public IEvent
         ~moveCharacter();
 
         void execute();
-        void undo();
+        //void undo();
 
     private:
-        unsigned long characterIndex; //index in character array
+        unsigned long index; //index in character array
         unsigned long characterID; //id of character
         unsigned short xNew;
         unsigned short yNew;
         unsigned short zNew;
-        unsigned short xPrevious;
-        unsigned short yPrevious;
-        unsigned short zPrevious;
+        //unsigned short xPrevious;
+        //unsigned short yPrevious;
+        //unsigned short zPrevious;
 };
 
 class commandPickUp : public IEvent

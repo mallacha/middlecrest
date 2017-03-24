@@ -37,6 +37,69 @@ characterPool::~characterPool()
     }
 }
 
+unsigned int characterPool::getXCoordByPoolId(unsigned int i)
+{
+    if(i < getSize()) {
+    //Checking bounds
+        return poolArray[i].getXCoord();
+    }
+
+    return 0;
+}
+
+unsigned int characterPool::getYCoordByPoolId(unsigned int i)
+{
+    if(i < getSize()) {
+    //Checking bounds
+        return poolArray[i].getYCoord();
+    }
+
+    return 0;
+}
+
+unsigned int characterPool::getZCoordByPoolId(unsigned int i)
+{
+    if(i < getSize()) {
+    //Checking bounds
+        return poolArray[i].getZCoord();
+    }
+
+    return 0;
+}
+
+int characterPool::setXCoordByPoolId(unsigned int i, unsigned int x)
+{
+    if(i < getSize()) {
+    //Checking bounds
+        poolArray[i].setXCoord(x);
+        return 1; //true
+    }
+
+    return 0; //false
+}
+
+int characterPool::setYCoordByPoolId(unsigned int i, unsigned int y)
+{
+    if(i < getSize()) {
+    //Checking bounds
+        poolArray[i].setYCoord(y);
+        return 1; //true
+    }
+
+    return 0; //false
+}
+
+int characterPool::setZCoordByPoolId(unsigned int i, unsigned int z)
+{
+    if(i < getSize()) {
+    //Checking bounds
+        poolArray[i].setZCoord(z);
+        return 1; //true
+    }
+
+    return 0; //false
+}
+
 int characterPool::allocate(unsigned short pool, unsigned short overflow)
 //Allocates pool and overflow pool
 {

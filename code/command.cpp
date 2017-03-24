@@ -17,86 +17,58 @@ static char SWITCHKEYBINDING = 'b';
 moveCharacter::moveCharacter()
 //Base class constructor
 {
-    characterIndex = 0;
+    index = 0;
     characterID = 0;
     xNew = 0;
     yNew = 0;
     zNew = 0;
-    xPrevious = 0;
-    yPrevious = 0;
-    zPrevious = 0;
+    //xPrevious = 0;
+    //yPrevious = 0;
+    //zPrevious = 0;
 }
 
 moveCharacter::~moveCharacter()
 //Base class destructor
 {
-    characterIndex = 0;
+    index = 0;
     characterID = 0;
     xNew = 0;
     yNew = 0;
     zNew = 0;
-    xPrevious = 0;
-    yPrevious = 0;
-    zPrevious = 0;
+    //xPrevious = 0;
+    //yPrevious = 0;
+    //zPrevious = 0;
 }
 
-moveCharacter::moveCharacter(unsigned long index, character * object, unsigned short x, unsigned short y, unsigned short z)
+moveCharacter::moveCharacter(unsigned long characterIndex, character * object, unsigned short x, unsigned short y, unsigned short z)
 {
-    characterIndex = index;
+    index = characterIndex;
     characterID = object->id.getID();
     xNew = x;
     yNew = y;
     zNew = z;
-    xPrevious = object->getXCoord();
-    yPrevious = object->getYCoord();
-    zPrevious = object->getZCoord();
+    //xPrevious = object->getXCoord();
+    //yPrevious = object->getYCoord();
+    //zPrevious = object->getZCoord();
 }
 
 void moveCharacter::execute()
 //Move character
 {
-/*    IZoneCache * location = locator::getLocation();
-    zone * zoneArea = location->getZone();
-    tile *** dungeon = zoneArea->getGrid();*/
-
     characterPool * characters = locator::getCharacters();
-    character * characterObject = characters->getPool();
-    character * obj = NULL;
 
-    //if(!(dungeon[zNew][xNew][yNew]).isAttribute(IMPASSIBLE_ATTRIBUTE)) {
-    //If tile is impassible
+    if(characters->getCharacterIdByPoolId(index) == characterID) {
 
-        if(characterObject[characterIndex].id.getID() == characterID) { //TODO: Combine with condition above
-/*cout << characterID << endl;
-cout << xNew << endl;
-cout << yNew << endl;
-cout << zNew << endl;
-system("Pause");*/
-            obj = &characterObject[characterIndex];
+        //Save character's old coordinates
+        //xPrevious = characters->getXCoordByPoolId(index);
+        //yPrevious = characters->getYCoordByPoolId(index);
+        //zPrevious = characters->getZCoordByPoolId(index);
 
-            //Save character's old coordinates
-            xPrevious = obj->getXCoord();
-            yPrevious = obj->getYCoord();
-            zPrevious = obj->getZCoord();
-
-            //Set new coordinaties for character
-            obj->setXCoord(xNew);
-            obj->setYCoord(yNew);
-            obj->setZCoord(zNew);
-
-            obj = NULL;
-        }
-    //}
-}
-
-void moveCharacter::undo()
-{
-/*    characterPool * characters = locator::getCharacters();
-    character * characterObject = characters->getPool();
-
-    if(characterObject[characterIndex].getID() == characterID) {
-        characterObject[characterIndex].moveCharacter(xPrevious, yPrevious, zPrevious);
-    }*/
+        //Set new coordinaties for character
+        characters->setXCoordByPoolId(index, xNew);
+        characters->setYCoordByPoolId(index, yNew);
+        characters->setZCoordByPoolId(index, zNew);
+    }
 }
 
 void handleInput(character * actor, unsigned long ith)
@@ -131,7 +103,14 @@ void handleInput(character * actor, unsigned long ith)
 
     }
 
-    if(NULL != command) {
+        #ifdef ASSERTION_TEST
+            //Continues the else-if and checks for NULL event object if no event was generated
+            else {
+                assert(NULL == event);
+            }
+        #endif
+
+    if(command) {
         events->add(command);
     }
 

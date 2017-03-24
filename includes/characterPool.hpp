@@ -37,6 +37,11 @@ class characterPool : public IPool
         inline long getLastActive() { return lastActive; }
         character * getCharacterByPoolId(unsigned int i) { return &poolArray[i]; }
         character * getCharacterByObjectId(unsigned int i) {}
+        unsigned int getCharacterIdByPoolId(unsigned int i) { return poolArray[i].id.getID(); }
+
+        unsigned int getXCoordByPoolId(unsigned int i);
+        unsigned int getYCoordByPoolId(unsigned int i);
+        unsigned int getZCoordByPoolId(unsigned int i);
 
         //Setters
         int allocate(unsigned short, unsigned short); //Allocate memory for pool.
@@ -44,6 +49,10 @@ class characterPool : public IPool
         void save();
 
         void process(); //Process active objects
+
+        int setXCoordByPoolId(unsigned int i, unsigned int x);
+        int setYCoordByPoolId(unsigned int i, unsigned int y);
+        int setZCoordByPoolId(unsigned int i, unsigned int z);
 
     private:
         unsigned int lastActive; /* Stores last active element. Same type as pool.hpp->IPool::poolSize
