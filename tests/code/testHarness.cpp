@@ -126,8 +126,8 @@ void testHarness::mapTests()
     //Code coverage
     ++filesCovered; //drawing algorithm doesn't need to be tested automatically?
     filesCovered += 0.3; //partial utilities
-    incCoverageTotal(320); //setTimer + checkTimerFinished
-    incCoverageCurrent(312);
+    incCoverageTotal(319);
+    incCoverageCurrent(302); //~cave not tested yet
     incCoverageTotal(8); //setTimer + checkTimerFinished
     incCoverageCurrent(8);
 }
@@ -163,7 +163,7 @@ void testHarness::report()
     incCoverageCurrent(testCount);
 
     //current/total. We add a 5% margin for human error. Probably too small, since this is a manual measurement
-    float filePercentage = (filesCovered / 19.00)+0.05; //-5% when at 100%, +5% prior because of assertion testing
+    float filePercentage = (filesCovered / 19.00)+0.1; //-5% when at 100%, +10% prior because of assertion testing
     printf("\nEstimated Code Coverage: %3.1f%%\n", ((((float)codeCoverageCurrent / (float)codeCoverageTotal)*100)*filePercentage));
     printf("Tests: Total %d | Successes: %d | Skipped %d | Failures %d\n", testCount, succeses, skips, failures);
 }

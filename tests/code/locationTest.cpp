@@ -1,4 +1,5 @@
 #include "../../includes/service.hpp"
+#include "../../includes/utility.hpp"
 #include "../includes/locationTest.hpp"
 
 using namespace std;
@@ -10,9 +11,14 @@ int IMapTest::generate()
     unitTestHarness->add("Testing Cave Generation for 10 seconds");
 
     IMap * dungeon = new cave();
-    dungeon->generate();
+    int mapGenerations = 0;
 
-    int mapGenerations = dungeon->mapGenerations;
+    timerSet(10); //in seconds
+    do {
+        dungeon->generate();
+        ++mapGenerations;
+    }while(!timerFinished());
+
     unitTestHarness->displayResult(SUCCESS);
 
     delete dungeon;

@@ -74,10 +74,9 @@ class cave : public IMap
         int generate();
 
     private:
-        void clearTiles();
-        int floodFill(float);
-        void fill(int *** &, long, long, unsigned short, unsigned short, unsigned short &,
-                 unsigned short, unsigned short); //Recursively fill a tile
+        inline int floodFill(const float);
+        static void fill(int *** &, long, long, unsigned short, unsigned short, unsigned short &,
+                 const unsigned short &, const unsigned short &); //Recursively fill a tile
 };
 
 class nullLocation : public IMap

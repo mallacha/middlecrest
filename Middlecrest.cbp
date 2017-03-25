@@ -60,7 +60,6 @@
 		<Unit filename="includes/command.hpp" />
 		<Unit filename="includes/configuration.hpp" />
 		<Unit filename="includes/database.hpp" />
-		<Unit filename="includes/display.hpp" />
 		<Unit filename="includes/event.hpp" />
 		<Unit filename="includes/game.hpp" />
 		<Unit filename="includes/lib.h" />

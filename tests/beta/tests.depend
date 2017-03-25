@@ -22,17 +22,12 @@
 	<stdio.h>
 	<wchar.h>
 
-1454837266 c:\sean\game2\includes\display.hpp
-	"lib.h"
+1490473113 c:\sean\game2\includes\location.hpp
 	"logging.hpp"
-	"location.hpp"
+	"configuration.hpp"
 
 1490405177 c:\sean\game2\includes\logging.hpp
 	"lib.h"
-
-1490433282 c:\sean\game2\includes\location.hpp
-	"logging.hpp"
-	"configuration.hpp"
 
 1490404700 c:\sean\game2\includes\configuration.hpp
 	"lib.h"
@@ -88,15 +83,6 @@
 	"logging.hpp"
 	<vector>
 
-1489294882 c:\sean\game2\includes\frustum.hpp
-	"lib.h"
-	"cache.hpp"
-	"ascii.hpp"
-	"logging.hpp"
-
-1490406149 c:\sean\game2\includes\cache.hpp
-	"lib.h"
-
 1490405887 c:\sean\game2\includes\game.hpp
 	"../includes/lib.h"
 	"../includes/logging.hpp"
@@ -105,9 +91,34 @@
 1490407262 c:\sean\game2\includes\utility.hpp
 	"../includes/lib.h"
 
+1490172356 c:\sean\game2\tests\includes\testharness.hpp
+	"randomcTest.hpp"
+	"poolTest.hpp"
+	"characterPoolTest.hpp"
+	"locationTest.hpp"
+	"displayTest.hpp"
+
+1490408961 c:\sean\game2\tests\includes\randomctest.hpp
+	"../../includes/randomc.hpp"
+
+1490172356 c:\sean\game2\tests\includes\pooltest.hpp
+	"../../includes/pool.hpp"
+
+1490172356 c:\sean\game2\tests\includes\characterpooltest.hpp
+	"../../includes/characterPool.hpp"
+
+1490172356 c:\sean\game2\tests\includes\locationtest.hpp
+	"../../includes/location.hpp"
+
+1490411662 c:\sean\game2\tests\includes\displaytest.hpp
+	"../../includes/ascii.hpp"
+
 1490172356 source:c:\sean\game2\code\cache.cpp
 	"../includes/cache.hpp"
 	"../includes/utility.hpp"
+
+1490406149 c:\sean\game2\includes\cache.hpp
+	"lib.h"
 
 1490172356 source:c:\sean\game2\code\character.cpp
 	"../includes/service.hpp"
@@ -132,23 +143,12 @@
 	"../includes/service.hpp"
 	<fstream>
 
-1454837006 source:c:\sean\game2\code\display.cpp
-	"../includes/display.hpp"
-	"../includes/service.hpp"
-
 1490407826 source:c:\sean\game2\code\event.cpp
 	"../includes/event.hpp"
 	"../includes/service.hpp"
 
-1489295016 source:c:\sean\game2\code\frustrum.cpp
-	"../includes/frustum.hpp"
-	"../includes/service.hpp"
-
 1490172356 source:c:\sean\game2\code\game.cpp
 	"../includes/game.hpp"
-	"../includes/service.hpp"
-
-1454837810 source:c:\sean\game2\code\location.cpp
 	"../includes/service.hpp"
 
 1490405276 source:c:\sean\game2\code\logging.cpp
@@ -179,33 +179,35 @@
 1490407095 source:c:\sean\game2\code\utility.cpp
 	"../includes/utility.hpp"
 
-1490411581 source:c:\sean\game2\main.cpp
-	"includes/service.hpp"
-	"includes/screens.hpp"
+1490172356 source:c:\sean\game2\tests\code\characterpooltest.cpp
+	"../../includes/service.hpp"
+	"../includes/characterPoolTest.hpp"
 
-1489297842 source:c:\sean\game2\beta\main.cpp
+1490411676 source:c:\sean\game2\tests\code\displaytest.cpp
+	"../../includes/service.hpp"
+	"../includes/displayTest.hpp"
+	"../../includes/utility.hpp"
+
+1490172356 source:c:\sean\game2\tests\code\mersennetest.cpp
+	"../../includes/service.hpp"
+	"../includes/randomcTest.hpp"
+
+1490172356 source:c:\sean\game2\tests\code\pooltest.cpp
+	"../../includes/service.hpp"
+	"../includes/poolTest.hpp"
+
+1490409200 source:c:\sean\game2\tests\code\testharness.cpp
+	"../../includes/service.hpp"
+	"../../includes/utility.hpp"
+	<stdio.h>
+	<string.h>
+	<time.h>
+
+1490172356 source:c:\sean\game2\tests\main.cpp
 	"../includes/service.hpp"
-	"../includes/screens.hpp"
 
-1490172356 c:\sean\game2\tests\includes\testharness.hpp
-	"randomcTest.hpp"
-	"poolTest.hpp"
-	"characterPoolTest.hpp"
-	"locationTest.hpp"
-	"displayTest.hpp"
-
-1490408961 c:\sean\game2\tests\includes\randomctest.hpp
-	"../../includes/randomc.hpp"
-
-1490172356 c:\sean\game2\tests\includes\pooltest.hpp
-	"../../includes/pool.hpp"
-
-1490172356 c:\sean\game2\tests\includes\characterpooltest.hpp
-	"../../includes/characterPool.hpp"
-
-1490172356 c:\sean\game2\tests\includes\locationtest.hpp
-	"../../includes/location.hpp"
-
-1490411662 c:\sean\game2\tests\includes\displaytest.hpp
-	"../../includes/ascii.hpp"
+1490419839 source:c:\sean\game2\tests\code\locationtest.cpp
+	"../../includes/service.hpp"
+	"../../includes/utility.hpp"
+	"../includes/locationTest.hpp"
 
