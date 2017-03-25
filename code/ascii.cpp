@@ -15,13 +15,16 @@ IDisplay::~IDisplay()
     }
 }
 
-void IDisplay::set(IMap * object)
+void IDisplay::set(LocationType type)
 {
     if(map) {
         delete map;
     }
 
-    map = object;
+    switch(type) {
+        case 1: map = new cave(); break;
+        default: map = new IMap();
+    }
 }
 
 void IDisplay::randomStartingLocation(int ithCharacter)

@@ -13,7 +13,7 @@ int IDisplayTest::randomStartingLocation()
     character * object = characters->getCharacterByPoolId(ithElement);
 
     IDisplay * display = locator::getDisplay();
-    display->set(new cave());
+    display->set(CAVE);
 
     unitTestHarness->add("Testing Starting Location Randomization for 1 second");
 

@@ -3,7 +3,6 @@
 
 #pragma once
 #include "lib.h"
-#include "display.hpp"
 #include "location.hpp"
 
 class IDisplay
@@ -19,9 +18,10 @@ class IDisplay
         virtual unsigned int getDimX() = 0;
         virtual unsigned int getDimY() = 0;
         virtual int isImpassible(unsigned short, unsigned short, unsigned short) = 0;
-        void set(IMap *);
+        void set(LocationType);
         IMap * getMap() { return map; }
         void randomStartingLocation(int);
+        int generate() { return map->generate(); }
 
     protected:
         IMap * map;
@@ -39,6 +39,7 @@ class ascii : public IDisplay
         inline unsigned int getDimY() { return (unsigned int)(dimRow-1); }
         inline int isImpassible(unsigned short z, unsigned short x, unsigned short y)
                                  { return map->isImpassible(z, x, y); }
+        inline int generate() { map->generate(); }
 
     private:
         WINDOW * my_map; //Playing map (sometimes doubles as menu window)

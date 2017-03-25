@@ -2,7 +2,7 @@
 #define DISPLAYTEST_H
 
 #pragma once
-#include "../../includes/display.hpp"
+#include "../../includes/ascii.hpp"
 
 class IDisplayTest : public IDisplay
 {

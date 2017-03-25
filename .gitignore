@@ -19,7 +19,7 @@
 *.log
 *.sql
 log.txt
-save/*
+*.db
 
 # OS generated files #
 ######################
@@ -33,3 +33,7 @@ Thumbs.db
 # SVN #
 #######
 *.svn
+
+# Profiling #
+#############
+gmon*

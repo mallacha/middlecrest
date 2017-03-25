@@ -44,7 +44,7 @@ class IMap
         IMap();
         virtual ~IMap();
 
-        virtual int generate() = 0;
+        virtual int generate() {}
         inline int isGenerated() { return generated; }
         inline int getDimZ() { return dimLvl; }
         tile *** getGrid() { return grid; }

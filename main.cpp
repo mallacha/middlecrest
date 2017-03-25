@@ -57,7 +57,8 @@ int main(int argc, char *argv[])
     //character * object = characters->getCharacterByPoolId(ithElement);
 
     display = locator::getDisplay();
-    display->set(new cave());
+    display->set(CAVE);
+    display->generate();
 
     display->randomStartingLocation(ithElement);
 

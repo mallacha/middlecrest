@@ -4,22 +4,8 @@ using namespace std;
 
 IMap::IMap()
 {
-    grid=NULL;
-    dimLvl=0;
+    dimLvl=1;
     generated=0;
-}
-
-IMap::~IMap()
-{
-    generated=0;
-    dimLvl=0;
-    //grid should be taken care of in dervied classes
-}
-
-cave::cave()
-{
-    generated=0;
-    dimLvl=1; //levels
     grid = new tile**[dimLvl];
     IDisplay * display = locator::getDisplay();
     unsigned short dimRow = display->getDimY()+1;
@@ -36,8 +22,35 @@ cave::cave()
           No initial values
          ******************/
     }
+}
 
-    generate();
+IMap::~IMap()
+{
+    generated=0;
+    dimLvl=0;
+    //grid should be taken care of in dervied classes
+}
+
+cave::cave()
+{
+//    generated=0;
+//    dimLvl=1; //levels
+//    grid = new tile**[dimLvl];
+//    IDisplay * display = locator::getDisplay();
+//    unsigned short dimRow = display->getDimY()+1;
+//    unsigned short dimCol = display->getDimX()+1;
+
+    //Instantiate array
+//    for(short l=0; l < dimLvl; ++l) {
+//        grid[l] = new tile*[dimRow];
+
+//        for(short x=0; x < dimRow; ++x) {
+//            grid[l][x] = new tile[dimCol];
+//        }
+        /******************
+          No initial values
+         ******************/
+//    }
 }
 
 cave::~cave()
