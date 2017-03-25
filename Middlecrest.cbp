@@ -22,7 +22,6 @@
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-fomit-frame-pointer" />
 			<Add option="-Wshadow" />
 			<Add option="-Winline" />
 			<Add option="-Wswitch-default" />

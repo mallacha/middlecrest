@@ -127,6 +127,10 @@ class nullRNG : public IRand
         inline unsigned long RandomInit(long int) { log(); return 0; }
         inline long IRandom(long, long) { log(); return 0; }
 
+            #ifdef UNIT_TEST
+                inline unsigned long BRandom() { log(); return 0; }
+            #endif
+
     private:
         void log();
 

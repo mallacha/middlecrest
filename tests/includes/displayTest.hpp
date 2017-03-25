@@ -10,10 +10,11 @@ class IDisplayTest : public IDisplay
         IDisplayTest() {}
         ~IDisplayTest() {}
 
-        virtual void draw() {}
-        virtual void create() {}
-        virtual unsigned int getDimX() { return 0; }
-        virtual unsigned int getDimY() { return 0; }
+        void draw() {}
+        void create() {}
+        unsigned int getDimX() { return 0; }
+        unsigned int getDimY() { return 0; }
+        int isImpassible(unsigned short a, unsigned short b, unsigned short c) {}
         int randomStartingLocation();
 };
 

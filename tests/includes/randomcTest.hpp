@@ -12,6 +12,7 @@ class TRandomMersenneTest : public IRand
 
         long IRandom(long, long);
         unsigned long RandomInit(long int);
+        unsigned long BRandom() {}
 };
 
 #endif

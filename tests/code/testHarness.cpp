@@ -134,8 +134,8 @@ void testHarness::mapTests()
 
 void testHarness::displayTests()
 {
-    printf("\nTesting Display Algorithms...\n");
-    IDisplayTest * displayTest = new IDisplayTest();
+/*    printf("\nTesting Display Algorithms...\n");
+    IDisplay * displayTest = new IDisplayTest();
     int generations = displayTest->randomStartingLocation();
 
     printf("Start location generations: %d\nPercentge of failure: Less than %.9f%%\n", generations, 1/(float)generations);
@@ -143,7 +143,7 @@ void testHarness::displayTests()
     //Code coverage
     ++filesCovered; //ascii.cpp
     incCoverageTotal(13);
-    incCoverageCurrent(13);
+    incCoverageCurrent(13);*/
 }
 
 void testHarness::begin()
