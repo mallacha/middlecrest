@@ -15,9 +15,7 @@ int validateUnsignedShort(long value)
 
 unsigned int validateUnsignedInt(long value)
 {
-    if(value > UINT_MAX) {
-        return UINT_MAX;
-    }else if(value < 0){
+    if(value < 0){
         return 0;
     }
 

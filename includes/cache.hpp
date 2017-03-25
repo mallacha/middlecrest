@@ -9,7 +9,7 @@ class ICache
 {
     public:
         ICache();
-        ~ICache();
+        virtual ~ICache();
 
         //Setters
         virtual void allocate(int); //Allocate memory for pool.

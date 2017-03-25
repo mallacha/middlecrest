@@ -10,7 +10,7 @@ class IPool
 {
     public:
         IPool();
-        ~IPool();
+        virtual ~IPool();
 
         //Setters
         virtual int allocate(int, int); //Allocate memory for pool.

@@ -1,3 +1,8 @@
+#ifndef _UTILITY_H
+#define _UTILITY_H
+
+#pragma once
+
 #include "../includes/lib.h"
 
 int validateUnsignedShort(long);
@@ -9,3 +14,5 @@ unsigned int validateUnsignedInt(long);
             void timerSet(int);
             int timerFinished();
         #endif
+
+#endif

@@ -10,6 +10,8 @@ class IDatabase
 //Mock interface since this is not used as part of the core library
 {
     public:
+        virtual ~IDatabase() = 0;
+
         virtual int dataQuery(sqlite3_stmt *&, const char *, short, ...) = 0;
         virtual int saveQuery(sqlite3_stmt *&, const char *, short, ...) = 0;
         virtual int fileQuery(sqlite3_stmt *&, const char *, const char *, short, ...) = 0;

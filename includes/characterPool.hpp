@@ -36,7 +36,7 @@ class characterPool : public IPool
         character * getPool() { return poolArray; }
         inline long getLastActive() { return lastActive; }
         character * getCharacterByPoolId(unsigned int i) { return &poolArray[i]; }
-        character * getCharacterByObjectId(unsigned int i) {}
+        //character * getCharacterByObjectId(unsigned int i) {}
         unsigned int getCharacterIdByPoolId(unsigned int i) { return poolArray[i].id.getID(); }
 
         unsigned int getXCoordByPoolId(unsigned int i);

@@ -32,6 +32,8 @@ int IPool::allocate(int pool, int overflow)
             inactiveOverflowIndex = (int)getPoolSize();
         }
     }
+
+    return getSize();
 }
 
 int IPool::setSize(int pool, int overflow)

@@ -11,7 +11,7 @@ class IGame
 {
     public:
         IGame();
-        ~IGame();
+        virtual ~IGame();
 
         //Getters
         inline unsigned int getPlayerInstance() { return (long)player_instance; }

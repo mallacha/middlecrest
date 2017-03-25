@@ -10,6 +10,8 @@ class ILogging
 //Interface for logging
 {
     public:
+        virtual ~ILogging() = 0;
+
         virtual void info(const char * format, ...) = 0; //Business process has finished.
         virtual void trace(const char * format, ...) = 0; //Detailed information intended for development.
         virtual void debug(const char * format, ...) = 0; //Debug information

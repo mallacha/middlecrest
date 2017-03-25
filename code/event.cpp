@@ -3,13 +3,17 @@
 
 using namespace std;
 
+IEvent::~IEvent()
+{
+}
+
 eventObject::eventObject()
 {
     priority = SHRT_MIN;
     event = NULL;
 }
 
-eventObject::eventObject(IEvent * object, unsigned int value)
+eventObject::eventObject(IEvent * object, int value)
 //Construct object with a specific event and priority
 {
     if(object) {
@@ -32,6 +36,9 @@ eventObject::~eventObject()
     }
 }
 
+IEvents::~IEvents()
+{
+}
 
 events::events()
 {

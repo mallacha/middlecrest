@@ -16,6 +16,8 @@ class IEvent
 //Object interface
 {
     public:
+        virtual ~IEvent() = 0;
+
         virtual void execute() = 0; //Used by: events
 };
 
@@ -24,7 +26,7 @@ class eventObject : public IEvent
 {
     public:
         eventObject();
-        eventObject(IEvent *, unsigned int);
+        eventObject(IEvent *, int);
         ~eventObject();
 
         inline void execute() { event->execute(); }
@@ -42,6 +44,8 @@ class IEvents
 //Game events interface (movement, messages, etc.)
 {
     public:
+        virtual ~IEvents() = 0;
+
         virtual void execute() = 0;
         virtual void add(IEvent *) = 0;
 };

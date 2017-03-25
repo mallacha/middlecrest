@@ -11,7 +11,7 @@ class IDisplay
 {
     public:
         IDisplay();
-        ~IDisplay();
+        virtual ~IDisplay();
 
         //Setters
         virtual void draw() = 0;
@@ -21,7 +21,7 @@ class IDisplay
         virtual int isImpassible(unsigned short, unsigned short, unsigned short) = 0;
         void set(IMap *);
         IMap * getMap() { return map; }
-        int randomStartingLocation(int);
+        void randomStartingLocation(int);
 
     protected:
         IMap * map;

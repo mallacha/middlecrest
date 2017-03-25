@@ -24,7 +24,7 @@ enum CharacterType
 enum LocationType
 {
     WILDERNESS = 0,
-    CAVE = 1,
+    CAVE = 1
 };
 
 enum TileFeatureFlag

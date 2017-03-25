@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
 
     int ithElement = characters->createCharacter(PC);
     //id = characters->createCharacter(NPC);
-    character * object = characters->getCharacterByPoolId(ithElement);
+    //character * object = characters->getCharacterByPoolId(ithElement);
 
     display = locator::getDisplay();
     display->set(new cave());

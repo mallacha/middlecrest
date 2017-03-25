@@ -41,6 +41,9 @@ class IMap
 //X by Y tiles
 {
     public:
+        IMap();
+        virtual ~IMap();
+
         virtual int generate() = 0;
         inline int isGenerated() { return generated; }
         inline int getDimZ() { return dimLvl; }
@@ -73,7 +76,7 @@ class cave : public IMap
     private:
         void clearTiles();
         int floodFill(float);
-        int fill(int *** &, long, long, unsigned short, unsigned short, unsigned short &,
+        void fill(int *** &, long, long, unsigned short, unsigned short, unsigned short &,
                  unsigned short, unsigned short); //Recursively fill a tile
 };
 

@@ -58,7 +58,11 @@ int saveDataTableCreation(const char * select_query, int buffer1, const char * q
 
 /**********************************************************
                          Database
-/*********************************************************/
+**********************************************************/
+
+IDatabase::~IDatabase()
+{
+}
 
 sqliteDatabase::sqliteDatabase()
 {

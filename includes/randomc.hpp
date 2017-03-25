@@ -83,11 +83,13 @@ class IRand
 //Interface for RNG
 {
     public:
-        virtual unsigned long RandomInit(long int) {} //re-seed generator
-        virtual long IRandom(long, long) {} //random integer
+        virtual ~IRand() = 0;
+
+        virtual unsigned long RandomInit(long int) = 0;//re-seed generator
+        virtual long IRandom(long, long) = 0; //random integer
 
             #ifdef UNIT_TEST
-                virtual unsigned long BRandom() {}
+                virtual unsigned long BRandom() = 0;
             #endif
 };
 

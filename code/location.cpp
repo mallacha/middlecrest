@@ -2,6 +2,20 @@
 
 using namespace std;
 
+IMap::IMap()
+{
+    grid=NULL;
+    dimLvl=0;
+    generated=0;
+}
+
+IMap::~IMap()
+{
+    generated=0;
+    dimLvl=0;
+    //grid should be taken care of in dervied classes
+}
+
 cave::cave()
 {
     generated=0;
@@ -330,7 +344,7 @@ int cave::floodFill(float expectedRatio)
     return returnVal;
 }
 
-int cave::fill(int *** & gridTemp, long r, long c, unsigned short wallCount, unsigned short total,
+void cave::fill(int *** & gridTemp, long r, long c, unsigned short wallCount, unsigned short total,
                    unsigned short & floorCount, unsigned short dimRow, unsigned short dimCol)
 {
     if(gridTemp[0][r][c] == 0) {

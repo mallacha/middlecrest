@@ -10,10 +10,13 @@
 *                                                                            *
 *****************************************************************************/
 
-#include "includes/randomc.hpp"
 #include "../includes/service.hpp"
 
 using namespace std;
+
+IRand::~IRand()
+{
+}
 
 TRandomMersenne::TRandomMersenne()
 {

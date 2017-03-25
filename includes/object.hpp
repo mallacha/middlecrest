@@ -30,8 +30,8 @@ class lifetime
         ***********/
 
         inline void reduceLifetime() { lifetimeObject.decrement(); }
-        inline int isActive() { lifetimeObject.isActive(); }
-        inline int isPermenant() { lifetimeObject.isPermenant(); }
+        inline int isActive() { return lifetimeObject.isActive(); }
+        inline int isPermenant() { return lifetimeObject.isPermenant(); }
 
         /***********
           Getters

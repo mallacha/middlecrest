@@ -76,17 +76,12 @@ void handleInput(character * actor, unsigned long ith)
     //Wait for input
     ch = getch();
 
-    //Get event service
+    //Get services
     IEvents * events = locator::getEvents();
     IEvent * event = NULL;
     IEvent * command = NULL;
-
-    characterPool * characters = locator::getCharacters();
-    character * characterObject = characters->getCharacterByPoolId(ith);
-
     IDisplay * display = locator::getDisplay();
 
-//TODO: make sure move doesn't generate an event when blocked
     if(ch == MOVEUP && !display->isImpassible(actor->getZCoord(), actor->getXCoord(), actor->getYCoord()-1)) {
         event = new moveCharacter(ith, actor, actor->getXCoord(), actor->getYCoord()-1, actor->getZCoord());
         command = new eventObject(event, 1);

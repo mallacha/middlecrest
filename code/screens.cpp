@@ -45,9 +45,9 @@ void loadSavedGame()
         short cols=COLS/2;
         char buf[4];
         char confirm = 'n';
-        int index=0;
-        short left = 26; //Length of longest line, i.e. "1 Keltian     1 Nordlundian" (5 spaces in middle)
-        short right = 4; //left minus (length of longest line minus four)
+        //int index=0;
+        //short left = 26; //Length of longest line, i.e. "1 Keltian     1 Nordlundian" (5 spaces in middle)
+        //short right = 4; //left minus (length of longest line minus four)
 
         echo();
 
@@ -103,7 +103,7 @@ void loadSavedGame()
     //Clean up
     sqlite3_finalize(res);
 
-    //Save id should be saved to 
+    //Save id should be saved to
     if(saved_character) {
         IGame * game = locator::getGame();
         game->setPlayerInstance((unsigned int)saved_character);

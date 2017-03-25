@@ -24,7 +24,7 @@ void IDisplay::set(IMap * object)
     map = object;
 }
 
-int IDisplay::randomStartingLocation(int ithCharacter)
+void IDisplay::randomStartingLocation(int ithCharacter)
 {
     tile *** dungeon = map->getGrid();
     characterPool * characters = locator::getCharacters();
@@ -117,7 +117,7 @@ void ascii::draw()
     //    total_objects = characters->getTotalObjects();
     //    if(total_objects > 0) {
             unsigned long i=0;
-            long lastActive = characters->getLastActive();
+            unsigned long lastActive = characters->getLastActive();
 
             do {
                 obj = characterObject[i];

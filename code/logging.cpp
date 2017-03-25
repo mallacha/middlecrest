@@ -3,6 +3,10 @@
 static void formatText(const char * message, const char * severityBuffer);
 static void write(const char * formatText, ...);
 
+ILogging::~ILogging()
+{
+}
+
 logging::logging()
 {
     textBuffer = new char[512];
