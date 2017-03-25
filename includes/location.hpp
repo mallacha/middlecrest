@@ -51,12 +51,6 @@ class IMap
         inline int isImpassible(unsigned short z, unsigned short x, unsigned short y)
                                  { return grid[z][y][x].isAttribute(IMPASSIBLE_ATTRIBUTE); }
 
-
-
-            #ifdef UNIT_TEST
-                int mapGenerations;
-            #endif
-
     protected:
         tile *** grid;
         unsigned short dimLvl; //levels
