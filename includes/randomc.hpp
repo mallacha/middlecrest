@@ -87,6 +87,7 @@ class IRand
 
         virtual unsigned long RandomInit(long int) = 0;//re-seed generator
         virtual long IRandom(long, long) = 0; //random integer
+        virtual long int getSeed() = 0;
 
             #ifdef UNIT_TEST
                 virtual unsigned long BRandom() = 0;
@@ -107,15 +108,18 @@ class TRandomMersenne : public IRand {                  // encapsulate random nu
   };
   public:
       TRandomMersenne();
-      TRandomMersenne(long int seed) {           // constructor
-          RandomInit(seed);}
-      unsigned long RandomInit(long int seed);            // re-seed
+      TRandomMersenne(long int value) {           // constructor
+          RandomInit(value);}
+      unsigned long RandomInit(long int);            // re-seed
       long IRandom(long min, long max);          // output random integer
+      inline long int getSeed() { return seed; }
 
   private:
       double Random();                           // output random float
+
       unsigned long BRandom();                   // output random bits
       unsigned long mt[N];                       // state vector
+      long int seed;                             // seed
       int mti;                                   // index into mt
 };
 
@@ -126,6 +130,7 @@ class nullRNG : public IRand
         ~nullRNG() {}
         inline unsigned long RandomInit(long int) { log(); return 0; }
         inline long IRandom(long, long) { log(); return 0; }
+        inline long getSeed() { log(); return 0; }
 
             #ifdef UNIT_TEST
                 inline unsigned long BRandom() { log(); return 0; }

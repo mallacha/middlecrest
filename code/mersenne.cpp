@@ -21,18 +21,21 @@ IRand::~IRand()
 TRandomMersenne::TRandomMersenne()
 {
     srand(time(0));
-    RandomInit(rand());
+    seed=rand();
+    RandomInit(seed);
 }
 
-unsigned long TRandomMersenne::RandomInit(long int seed) {
-  // re-seed generator
-  unsigned long s = (unsigned long)seed;
-  for (mti=0; mti<N; ++mti) {
-    s = s * 29943829 - 1;
-    mt[mti] = s;
-  }
+unsigned long TRandomMersenne::RandomInit(long int value) {
+// re-seed generator
+    seed = value;
+    unsigned long s = (unsigned long)seed;
 
-  return seed;
+    for (mti=0; mti<N; ++mti) {
+        s = s * 29943829 - 1;
+        mt[mti] = s;
+    }
+
+    return seed;
 }
 
 unsigned long TRandomMersenne::BRandom() {
