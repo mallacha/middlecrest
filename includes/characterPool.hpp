@@ -37,22 +37,26 @@ class characterPool : public IPool
         inline long getLastActive() { return lastActive; }
         character * getCharacterByPoolId(unsigned int i) { return &poolArray[i]; }
         //character * getCharacterByObjectId(unsigned int i) {}
-        unsigned int getCharacterIdByPoolId(unsigned int i) { return poolArray[i].id.getID(); }
+        unsigned int getObjectIdByPoolId(unsigned int index) { return poolArray[index].id.getID(); }
+        unsigned int getSaveIdByPoolId(long index) { return poolArray[index].getPlayerSaveId(); }
 
-        unsigned int getXCoordByPoolId(unsigned int i);
-        unsigned int getYCoordByPoolId(unsigned int i);
-        unsigned int getZCoordByPoolId(unsigned int i);
+        unsigned int getXCoordByPoolId(unsigned int);
+        unsigned int getYCoordByPoolId(unsigned int);
+        unsigned int getZCoordByPoolId(unsigned int);
 
         //Setters
         int allocate(unsigned short, unsigned short); //Allocate memory for pool.
         int createCharacter(CharacterType);
         void save();
+        void save(unsigned int index) { poolArray[index].save(); }
 
         void process(); //Process active objects
 
-        int setXCoordByPoolId(unsigned int i, unsigned int x);
-        int setYCoordByPoolId(unsigned int i, unsigned int y);
-        int setZCoordByPoolId(unsigned int i, unsigned int z);
+        int setXCoordByPoolId(unsigned int, unsigned int);
+        int setYCoordByPoolId(unsigned int, unsigned int);
+        int setZCoordByPoolId(unsigned int, unsigned int);
+        int setMapIdByPoolId(unsigned int, unsigned int);
+        void setRandomStartingLocation(unsigned int);
 
     private:
         unsigned int lastActive; /* Stores last active element. Same type as pool.hpp->IPool::poolSize

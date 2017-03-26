@@ -52,17 +52,17 @@ int main(int argc, char *argv[])
 
     loadSavedGame();
 
-    int ithElement = characters->createCharacter(PC);
+    int index = characters->createCharacter(PC);
     //id = characters->createCharacter(NPC);
     //character * object = characters->getCharacterByPoolId(ithElement);
 
     display = locator::getDisplay();
     display->set(CAVE);
-    display->generate();
+    display->generate(index);
 
-    display->randomStartingLocation(ithElement);
+    characters->setRandomStartingLocation(index);
 
-    while(1) {
+    while(game->gameRunning()) {
         display->draw();
 
         characters->process();

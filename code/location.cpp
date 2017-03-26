@@ -5,7 +5,7 @@ using namespace std;
 IMap::IMap()
 {
     dimLvl=1;
-    generated=0;
+    map_id=0;
     grid = new tile**[dimLvl];
     IDisplay * display = locator::getDisplay();
     const unsigned short dimRow = display->getDimY()+1;
@@ -26,7 +26,7 @@ IMap::IMap()
 
 IMap::~IMap()
 {
-    generated=0;
+    map_id=0;
     dimLvl=0;
     //grid should be taken care of in dervied classes
 }
@@ -52,12 +52,38 @@ cave::~cave()
     delete[] grid;
 
     //Variables
-    generated=0;
+    map_id=0;
     dimLvl=0;
     grid=NULL;
 }
 
-int cave::generate()
+void cave::linkMaps(unsigned int source, unsigned int destination)
+{
+    IDatabase * database = locator::getDatabase();
+    sqlite3_stmt* res;
+
+    database->saveQuery(res, "INSERT INTO objects (mid, mid_linkage, type, subtype) VALUES (%d, %d, 'object', 'link');", 100, source, destination);
+    sqlite3_finalize(res);
+    database->saveQuery(res, "INSERT INTO objects (mid, mid_linkage, type, subtype) VALUES (%d, %d, 'object', 'link');", 100, destination, source);
+    sqlite3_finalize(res);
+
+    //success or failure will be logged for queries
+}
+
+unsigned int cave::generate(const unsigned int index)
+//Generate a map based on character id and its location
+{
+    generate();
+
+    //TODO: ultimately I want to get by object ids?
+    characterPool * characters = locator::getCharacters();
+    characters->setMapIdByPoolId(index, map_id);
+    characters->save(index);
+
+    return map_id;
+}
+
+unsigned int cave::generate()
 //Cave creation function
 {
     unsigned short r=0;
@@ -68,10 +94,26 @@ int cave::generate()
     const short wallFreq=40; //Frequency of wall
     IRand * random = locator::getRNG();
     IDisplay * display = locator::getDisplay();
+    random->RandomInit(rand());
     const unsigned short dimRow = display->getDimY();
     const unsigned short dimCol = display->getDimX();
     const unsigned short boundariesRow = dimRow+1;
     const unsigned short boundariesCol = dimCol+1;
+
+                #ifndef UNIT_TEST
+                //Temporary. Just here for development until
+                //a full map generation algorithm is developed
+                    IDatabase * database = locator::getDatabase();
+
+                    sqlite3_stmt* res;
+                    database->saveQuery(res, "INSERT INTO maps (is_dungeon, zone_x, zone_y, map_seed, environ) VALUES (1, 3, 11, %d, %d);", 150, random->getSeed(), CAVE);
+                    sqlite3_finalize(res);
+
+                    database->saveQuery(res, "SELECT mid FROM maps ORDER BY mid DESC LIMIT 1;", 50);
+                    map_id = (unsigned int)sqlite3_column_int(res, 0);
+                    sqlite3_finalize(res);
+                #endif
+
 
     do {
         /*********************************************************************************
@@ -208,10 +250,7 @@ int cave::generate()
 
     }while(0 == floodFill(0.45));
 
-    //Set bool so not generated again
-    generated = 1;
-
-    return generated;
+    return map_id; //doubles as a success (true > 0)
 }
 
 int cave::floodFill(float expectedRatio)

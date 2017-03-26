@@ -15,16 +15,20 @@ class IGame
 
         //Getters
         inline unsigned int getPlayerInstance() { return (long)player_instance; }
+        int gameRunning() { return running; } //true
 
         //Setters
         virtual void save() {}
         virtual void initialize();
         inline virtual void setPlayerInstance(unsigned int value) { player_instance = validateUnsignedInt(value); }
+        void setSignalQuit() { running=0; }
 
     private:
-        void createWorldCellTable();
+        inline void createWorldCellTable();
+        inline void createObjectTable();
 
         unsigned int player_instance; //Database id, not game object id. So we know where to store it
+        unsigned short running; //playing game state
 };
 
 class middlecrest : public IGame

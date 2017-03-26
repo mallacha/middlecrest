@@ -6,6 +6,8 @@ using namespace std;
 IDisplay::IDisplay()
 {
     map = NULL;
+    random_xy[0]=0;
+    random_xy[1]=0;
 }
 
 IDisplay::~IDisplay()
@@ -13,6 +15,8 @@ IDisplay::~IDisplay()
     if(map) {
         delete map;
     }
+    random_xy[0]=0;
+    random_xy[1]=0;
 }
 
 void IDisplay::set(LocationType type)
@@ -27,22 +31,28 @@ void IDisplay::set(LocationType type)
     }
 }
 
-void IDisplay::randomStartingLocation(int ithCharacter)
+int * IDisplay::getRandomStartingLocation()
 {
-    tile *** dungeon = map->getGrid();
-    characterPool * characters = locator::getCharacters();
-    character * characterObject = characters->getCharacterByPoolId(ithCharacter);
     IRand * random = locator::getRNG();
-    unsigned int x = random->IRandom(1, getDimX()-1);
-    unsigned int y = random->IRandom(1, getDimY()-1);
+    tile *** dungeon = map->getGrid();
 
-    while(dungeon[0][y][x].isAttribute(IMPASSIBLE_ATTRIBUTE)) {
-        x = random->IRandom(1, getDimX()-1);
-        y = random->IRandom(1, getDimY()-1);
+    random_xy[0] = random->IRandom(1, getDimX()-1);
+    random_xy[1] = random->IRandom(1, getDimY()-1);
+    while(dungeon[0][random_xy[1]][random_xy[0]].isAttribute(IMPASSIBLE_ATTRIBUTE)) {
+        random_xy[0] = random->IRandom(1, getDimX()-1);
+        random_xy[1] = random->IRandom(1, getDimY()-1);
     }
 
-    characterObject->setXCoord(x);
-    characterObject->setYCoord(y);
+    return random_xy;
+}
+
+void IDisplay::generate(const unsigned int index)
+{
+    unsigned int map_id = map->generate(index);
+
+    //TODO: for testing purposes
+    unsigned int link = map->generate();
+    map->linkMaps(link, map_id);
 }
 
 void nullDisplay::log()
@@ -93,11 +103,13 @@ void ascii::create()
 
 void ascii::draw()
 {
+    //TODO: which map?
+
     if(map) {
         //Initialization
-        unsigned short rows=0;
-        unsigned int cols=0;
-        unsigned short lvls=0;
+        int rows=0;
+        int cols=0;
+        int lvls=0;
         tile *** dungeon = map->getGrid();
         characterPool * characters = locator::getCharacters();
         character * characterObject = characters->getPool();
@@ -114,6 +126,41 @@ void ascii::draw()
                 }
             }
         }
+
+
+
+
+        /****************************************************
+                    Map links (please profile)
+        ****************************************************/
+
+        IDatabase * database = locator::getDatabase();
+        sqlite3_stmt* res;
+
+        database->saveQuery(res, "SELECT coord_x, coord_y FROM objects WHERE mid=1 AND subtype='link';", 80);
+        cols = sqlite3_column_int(res, 0);
+        rows = sqlite3_column_int(res, 1);
+        sqlite3_finalize(res);
+
+        if(rows == -1 || cols == -1) {
+            getRandomStartingLocation(); //TODO: reuse existing random_xy values to avoid call?
+            cols = random_xy[0];
+            rows = random_xy[1];
+
+            database->saveQuery(res, "UPDATE objects SET coord_x=%d, coord_y=%d WHERE mid=%d;", 70, cols, rows, 1);
+            sqlite3_finalize(res);
+        }
+
+        mvwprintw(my_map, rows, cols, "O");
+
+        /****************************************************
+                             Finished
+        ****************************************************/
+
+
+
+
+
 
 
         unsigned int arraySize = characters->getSize();

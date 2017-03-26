@@ -37,67 +37,87 @@ characterPool::~characterPool()
     }
 }
 
-unsigned int characterPool::getXCoordByPoolId(unsigned int i)
+unsigned int characterPool::getXCoordByPoolId(unsigned int index)
 {
-    if(i < getSize()) {
+    if(index < getSize()) {
     //Checking bounds
-        return poolArray[i].getXCoord();
+        return poolArray[index].getXCoord();
     }
 
     return 0;
 }
 
-unsigned int characterPool::getYCoordByPoolId(unsigned int i)
+unsigned int characterPool::getYCoordByPoolId(unsigned int index)
 {
-    if(i < getSize()) {
+    if(index < getSize()) {
     //Checking bounds
-        return poolArray[i].getYCoord();
+        return poolArray[index].getYCoord();
     }
 
     return 0;
 }
 
-unsigned int characterPool::getZCoordByPoolId(unsigned int i)
+unsigned int characterPool::getZCoordByPoolId(unsigned int index)
 {
-    if(i < getSize()) {
+    if(index < getSize()) {
     //Checking bounds
-        return poolArray[i].getZCoord();
+        return poolArray[index].getZCoord();
     }
 
     return 0;
 }
 
-int characterPool::setXCoordByPoolId(unsigned int i, unsigned int x)
+int characterPool::setXCoordByPoolId(unsigned int index, unsigned int x)
 {
-    if(i < getSize()) {
+    if(index < getSize()) {
     //Checking bounds
-        poolArray[i].setXCoord(x);
+        poolArray[index].setXCoord(x);
         return 1; //true
     }
 
     return 0; //false
 }
 
-int characterPool::setYCoordByPoolId(unsigned int i, unsigned int y)
+int characterPool::setYCoordByPoolId(unsigned int index, unsigned int y)
 {
-    if(i < getSize()) {
+    if(index < getSize()) {
     //Checking bounds
-        poolArray[i].setYCoord(y);
+        poolArray[index].setYCoord(y);
         return 1; //true
     }
 
     return 0; //false
 }
 
-int characterPool::setZCoordByPoolId(unsigned int i, unsigned int z)
+int characterPool::setZCoordByPoolId(unsigned int index, unsigned int z)
 {
-    if(i < getSize()) {
+    if(index < getSize()) {
     //Checking bounds
-        poolArray[i].setZCoord(z);
+        poolArray[index].setZCoord(z);
         return 1; //true
     }
 
     return 0; //false
+}
+
+int characterPool::setMapIdByPoolId(unsigned int index, unsigned int id)
+{
+    if(index < getSize()) {
+    //Checking bounds
+        poolArray[index].setMapId(id);
+        return 1; //true
+    }
+
+    return 0; //false
+}
+
+void characterPool::setRandomStartingLocation(unsigned int index)
+{
+    IDisplay * display = locator::getDisplay();
+    const int * xy = display->getRandomStartingLocation();
+
+    poolArray[index].setXCoord(xy[0]);
+    poolArray[index].setYCoord(xy[1]);
 }
 
 int characterPool::allocate(unsigned short pool, unsigned short overflow)
@@ -228,17 +248,14 @@ int characterPool::createCharacter(CharacterType cType)
 
 void characterPool::save()
 {
-    unsigned int totalPoolSize = getSize(); //scan regular pool
+    ith = getSize();
 
-    //A test to see if the pool has been allocated. Skip code if it hasn't
-    if(totalPoolSize) {
-            ith=0;
-
-            do {
-                poolArray[ith].save();
-
-                ++ith;
-            }while(ith < totalPoolSize);
+    //A test to see if the pool has been allocated. Skip code if it hasn't.
+    if(ith) {
+        do {
+            --ith;
+            poolArray[ith].save();
+        }while(ith);
     }
 }
 

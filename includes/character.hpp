@@ -38,6 +38,9 @@ struct characterLocation
         ~characterLocation();
         characterLocation();
 
+        //Database mapping
+        unsigned int mapId;
+
         //World
         unsigned short worldX;
         unsigned short worldY;
@@ -65,6 +68,7 @@ class character
         void setType(CharacterType); //Character type (PC or NPC)
         void setPermanent(); //Sets permanent object
         void setTemporary(); //Sets temporary object
+        void setMapId(unsigned int value) { location.mapId = value; } //TODO: check value
         void setXCoord(unsigned long);
         void setYCoord(unsigned long);
         void setZCoord(unsigned long);
@@ -79,8 +83,9 @@ class character
         inline unsigned short getYCoord() { return location.y; }
         inline unsigned short getZCoord() { return location.z; }
         inline char getSigil() { return sigil; }
-        inline unsigned int getPlayerSaveId() { return save_id; }
+        inline unsigned int getPlayerSaveId() { return database_id; }
         inline unsigned int getObjectId() { return object->getID(); }
+        inline unsigned int getMapId() { return location.mapId; }
 
         //Componants
         lifetime lifetimeObject;
@@ -90,7 +95,7 @@ class character
         gameObject * object;
 
         //Hot data
-        unsigned int save_id; //Should be same size as game::player_instance
+        unsigned int database_id; //Should be same size as game::player_instance
         CharacterType type; //PC or NPC
         characterLocation location;
         char sigil; //Character sigil

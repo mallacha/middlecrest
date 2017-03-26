@@ -12,6 +12,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-Wshadow" />
+					<Add option="-Wredundant-decls" />
 					<Add option="-Winline" />
 					<Add option="-Wswitch-default" />
 					<Add option="-ansi" />
@@ -22,16 +23,11 @@
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-Wshadow" />
-			<Add option="-Winline" />
-			<Add option="-Wswitch-default" />
-			<Add option="-ansi" />
 			<Add option="-DDEBUG -DASSERTION_TEST" />
 			<Add directory="C:/sean/game2" />
 			<Add directory="C:/pdcurses/win32a" />
 		</Compiler>
 		<Linker>
-			<Add option="-s" />
 			<Add option="C:\pdcurses\win32\pdcurses.a" />
 			<Add option="C:\sean\game2\code\sqlite3.o" />
 			<Add directory="C:/sean/game2" />

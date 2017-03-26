@@ -14,6 +14,10 @@ static char MOVERIGHT = (char)KEY_RIGHT;
 static char SEARCH = 's';
 static char SWITCHKEYBINDING = 'b';
 
+        #ifdef DEBUG
+            static char QUITPROGRAM = (char)KEY_END;
+        #endif
+
 moveCharacter::moveCharacter()
 //Base class constructor
 {
@@ -57,7 +61,7 @@ void moveCharacter::execute()
 {
     characterPool * characters = locator::getCharacters();
 
-    if(characters->getCharacterIdByPoolId(index) == characterID) {
+    if(characters->getObjectIdByPoolId(index) == characterID) {
 
         //Save character's old coordinates
         //xPrevious = characters->getXCoordByPoolId(index);
@@ -114,6 +118,13 @@ void handleInput(character * actor, unsigned long ith)
         keybinding%=8;
         switchKeyBindings(keybinding);
     }
+
+        #ifdef DEBUG
+            if(ch == QUITPROGRAM) {
+                IGame * game = locator::getGame();
+                game->setSignalQuit();
+            }
+        #endif
 }
 
 void switchKeyBindings(const unsigned short & binding)

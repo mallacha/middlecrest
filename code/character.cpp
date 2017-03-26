@@ -43,6 +43,7 @@ characterAttributes::~characterAttributes()
 
 characterLocation::characterLocation()
 {
+    mapId=0;
     worldX=3;
     worldY=11;
     zoneX=0;
@@ -92,6 +93,7 @@ characterLocation::characterLocation()
 
 characterLocation::~characterLocation()
 {
+    mapId=0;
     worldX=0;
     worldY=0;
     zoneX=0;
@@ -111,7 +113,7 @@ character::character()
 {
     type=NPC;
     sigil='p'; //default. Typically not used
-    save_id=0;
+    database_id=0;
     object = new gameObject();
 }
 
@@ -119,7 +121,7 @@ character::~character()
 {
     type=NPC;
     sigil=' ';
-    save_id=0;
+    database_id=0;
     if(object) {
         delete object;
     }
@@ -136,7 +138,7 @@ void character::setType(CharacterType cType)
        case PC:
            lifetimeObj->set(OBJECT_LIFETIME_PERMANENT);
            sigil='P';
-           save_id = game->getPlayerInstance();
+           database_id = game->getPlayerInstance();
          break;
        default:
            lifetimeObj->set(OBJECT_LIFETIME_LONG);
@@ -179,41 +181,32 @@ void character::setZCoord(unsigned long value)
     location.z = (unsigned short)value;
 }
 
-void generateStartingLocation()
-{
-
-}
-
 void character::save()
 {
     if(lifetimeObject.isActive()) { //TODO, this needs to change to be more amenative to adding and removing characters from db but also the lifetime state (which, I'm not sure of right now)
         IDatabase * database = locator::getDatabase();
         sqlite3_stmt* res;
 
-        if(save_id) {
+        if(database_id) {
         //Save character data to database
-
+            if(type == PC) {
+                database->saveQuery(res, "UPDATE objects SET subtype='player', type='character', coord_x=%d, coord_y=%d, mid=%d WHERE oid=%d;", 150, location.x, location.y, location.mapId, database_id);
+                sqlite3_finalize(res);
+            }
         } else {
-            //TODO: mid needs to change. Refernce the variable in cahracter
-            database->saveQuery(res, "INSERT INTO characters (mid) VALUES (1);", 75);
+            database->saveQuery(res, "INSERT INTO objects (mid) VALUES (%d);", 70, location.mapId);
             sqlite3_finalize(res);
 
             //Grab last character saved (above) to get save_id
-            database->saveQuery(res, "SELECT id FROM characters ORDER BY id DESC LIMIT 1;", 55);
-            save_id = (unsigned int)sqlite3_column_int(res, 0);
+            database->saveQuery(res, "SELECT oid FROM objects ORDER BY oid DESC LIMIT 1;", 55);
+            database_id = (unsigned int)sqlite3_column_int(res, 0);
             sqlite3_finalize(res);
 
-            if(type == PC) {
-            //If character is PC, update character to be a player-character
-                database->saveQuery(res, "UPDATE characters SET player_character_bool=1 WHERE id=%d;", 70, save_id);
-                sqlite3_finalize(res);
-            }
-
-            IGame * game = locator::getGame();
-            if(!game->getPlayerInstance()) {
             //If no player character set for this game, assign character to be
             //player-character for this game
-                game->setPlayerInstance(save_id);
+            IGame * game = locator::getGame();
+            if(type == PC && !game->getPlayerInstance()) {
+                game->setPlayerInstance(database_id);
             }
         }
     }

@@ -20,11 +20,14 @@ class IDisplay
         virtual int isImpassible(unsigned short, unsigned short, unsigned short) = 0;
         void set(LocationType);
         IMap * getMap() { return map; }
-        void randomStartingLocation(int);
-        int generate() { return map->generate(); }
+        int * getRandomStartingLocation();
+        void generate(const unsigned int value); //{ map->generate(value); }
 
     protected:
+        int generate() { return map->generate(); }
+
         IMap * map;
+        int random_xy[2];
 };
 
 class ascii : public IDisplay
@@ -39,7 +42,7 @@ class ascii : public IDisplay
         inline unsigned int getDimY() { return (unsigned int)(dimRow-1); }
         inline int isImpassible(unsigned short z, unsigned short x, unsigned short y)
                                  { return map->isImpassible(z, x, y); }
-        inline int generate() { map->generate(); }
+        inline unsigned int generate() { return map->generate(); }
 
     private:
         WINDOW * my_map; //Playing map (sometimes doubles as menu window)

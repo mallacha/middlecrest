@@ -44,8 +44,9 @@ class IMap
         IMap();
         virtual ~IMap();
 
-        virtual int generate() {}
-        inline int isGenerated() { return generated; }
+        virtual unsigned int generate() { return 0; }
+        virtual unsigned int generate(const unsigned int) { return 0; }
+        virtual void linkMaps(unsigned int, unsigned int) {}
         inline int getDimZ() { return dimLvl; }
         tile *** getGrid() { return grid; }
         inline int isImpassible(unsigned short z, unsigned short x, unsigned short y)
@@ -53,8 +54,8 @@ class IMap
 
     protected:
         tile *** grid;
+        unsigned int map_id; //bool: 0 = false, 1 = true
         unsigned short dimLvl; //levels
-        unsigned short generated; //bool: 0 = false, 1 = true
 };
 
 class cave : public IMap
@@ -65,7 +66,9 @@ class cave : public IMap
         ~cave();
 
         //Setters
-        int generate();
+        void linkMaps(unsigned int, unsigned int);
+        unsigned int generate(const unsigned int value);
+        unsigned int generate();
 
     private:
         inline int floodFill(const float);
@@ -81,7 +84,9 @@ class nullLocation : public IMap
         ~nullLocation() { logger=NULL; }
 
         //Interface functions
-        int generate() { log(); return 0; }
+        unsigned int generate() { log(); return 0; }
+        unsigned int generate(const unsigned int value) { log(); return 0; }
+        void linkMaps(unsigned int, unsigned int) { log(); }
 
     private:
         void log();
