@@ -271,7 +271,6 @@ int cave::floodFill(float expectedRatio)
              floorCount, dimRow, dimCol);
         ratio = (float)floorCount / (float)total;
 
-        //if(floorCount > 0 && ratio < expectedRatio) {
         if(floorCount > 0) {
         //Only increase counter if we counted something.
         //Sometimes the random square we check is filled.

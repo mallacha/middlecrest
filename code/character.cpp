@@ -53,44 +53,6 @@ characterLocation::characterLocation()
     z=0;
 }
 
-
-/*char * characterLocation::serialize()
-{
-    int maxSize = 75;
-
-            #ifdef ASSERTION_TEST
-            //Tests whether the (if(!serialized) below is ever hit
-            //this test leads into the subsequent test that makes
-            //sure buffer is wide enough
-                maxSize=1000;
-
-                if(serialized) {
-                    delete [] serialized;
-                }
-            #endif
-
-    //Create buffer
-    if(!serialized) {
-        serialized = new char[maxSize];
-    }
-
-            #ifdef ASSERTION_TEST
-                snprintf(serialized, maxSize, "{%d:%d:%d:%d:%d,%d,%d}", worldX, worldY,zoneX,zoneY,x,y,z);
-
-                //Making sure buffer is large enough. If not, increase.
-                assert(strlen(serialized) < maxSize);
-
-                //Reset to original size and carry on
-                delete [] serialized;
-                serialized = new char[maxSize];
-            #endif
-
-    //Print
-    snprintf(serialized, maxSize, "{%d:%d:%d:%d:%d:%d:%d}", worldX, worldY,zoneX,zoneY,x,y,z);
-
-    return serialized;
-}*/
-
 characterLocation::~characterLocation()
 {
     mapId=0;

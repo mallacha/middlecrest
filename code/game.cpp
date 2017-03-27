@@ -86,23 +86,7 @@ void middlecrest::initialize()
     //database->saveQuery(res, "SELECT wcid FROM world_cell WHERE wcid=1 LIMIT 1;", 50);
     database->saveQuery(res, "SELECT mid FROM maps WHERE mid=1 LIMIT 1;", 45);
 
-    //Insert data, if needed
-/*    if(sqlite3_column_type(res, 0) == 5) {
-    //If result row is null (i.e. no table, column type is 5)
-        sqlite3_finalize(res);
-        //database->saveQuery(res, "INSERT INTO world_cell (position, age, type) VALUES ('%s', 123, 1);", 80, starting_location);
-        srand(time(0)); //seeding
-        database->saveQuery(res, "INSERT INTO maps (is_dungeon, zone_x, zone_y, map_seed, environ) VALUES (1, 3, 11, %d, 1);", 150, rand());
-
-        //Log database creation
-        ILogging * logger = locator::getLogging();
-        logger->info("Inserted first character coordinate");
-    }*/
-
     sqlite3_finalize(res);
-    /************************
-     Assign starting point
-    ************************/
 }
 
 
