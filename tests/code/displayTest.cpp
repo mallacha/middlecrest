@@ -9,24 +9,21 @@ int IDisplayTest::randomStartingLocation()
     IUnitTest * unitTestHarness = locator::getUnitTests();
 
     characterPool * characters = locator::getCharacters();
-    int ithElement = characters->createCharacter(PC);
-    character * object = characters->getCharacterByPoolId(ithElement);
+    int index = characters->createCharacter(PC);
 
     IDisplay * display = locator::getDisplay();
-    display->set(CAVE);
+    unsigned map_id = display->createGameMap(CAVE);
+    display->set(map_id);
 
     unitTestHarness->add("Testing Starting Location Randomization for 1 second");
 
     int generations=0;
     timerSet(1); //in seconds
     do {
-        display->randomStartingLocation(ithElement);
+        characters->setRandomStartingLocation(index);
         ++generations;
     }while(!timerFinished());
     unitTestHarness->displayResult(SUCCESS);
-
-    delete characters;
-    delete object;
 
     return generations;
 }

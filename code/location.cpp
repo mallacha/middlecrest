@@ -6,6 +6,7 @@ IMap::IMap()
 {
     dimLvl=1;
     map_id=0;
+    seed=0;
     grid = new tile**[dimLvl];
     IDisplay * display = locator::getDisplay();
     const unsigned short dimRow = display->getDimY()+1;
@@ -26,17 +27,6 @@ IMap::IMap()
 
 IMap::~IMap()
 {
-    map_id=0;
-    dimLvl=0;
-    //grid should be taken care of in dervied classes
-}
-
-cave::cave()
-{
-}
-
-cave::~cave()
-{
     IDisplay * display = locator::getDisplay();
     const unsigned short dimRow = display->getDimY()+1;
 
@@ -50,40 +40,13 @@ cave::~cave()
     }
 
     delete[] grid;
-
-    //Variables
+    grid=NULL;
     map_id=0;
     dimLvl=0;
-    grid=NULL;
+    seed=0;
 }
 
-void cave::linkMaps(unsigned int source, unsigned int destination)
-{
-    IDatabase * database = locator::getDatabase();
-    sqlite3_stmt* res;
-
-    database->saveQuery(res, "INSERT INTO objects (mid, mid_linkage, type, subtype) VALUES (%d, %d, 'object', 'link');", 100, source, destination);
-    sqlite3_finalize(res);
-    database->saveQuery(res, "INSERT INTO objects (mid, mid_linkage, type, subtype) VALUES (%d, %d, 'object', 'link');", 100, destination, source);
-    sqlite3_finalize(res);
-
-    //success or failure will be logged for queries
-}
-
-unsigned int cave::generate(const unsigned int index)
-//Generate a map based on character id and its location
-{
-    generate();
-
-    //TODO: ultimately I want to get by object ids?
-    characterPool * characters = locator::getCharacters();
-    characters->setMapIdByPoolId(index, map_id);
-    characters->save(index);
-
-    return map_id;
-}
-
-unsigned int cave::generate()
+long cave::generate()
 //Cave creation function
 {
     unsigned short r=0;
@@ -94,33 +57,17 @@ unsigned int cave::generate()
     const short wallFreq=40; //Frequency of wall
     IRand * random = locator::getRNG();
     IDisplay * display = locator::getDisplay();
-    random->RandomInit(rand());
+    random->RandomInit(seed);
     const unsigned short dimRow = display->getDimY();
     const unsigned short dimCol = display->getDimX();
     const unsigned short boundariesRow = dimRow+1;
     const unsigned short boundariesCol = dimCol+1;
-
-                #ifndef UNIT_TEST
-                //Temporary. Just here for development until
-                //a full map generation algorithm is developed
-                    IDatabase * database = locator::getDatabase();
-
-                    sqlite3_stmt* res;
-                    database->saveQuery(res, "INSERT INTO maps (is_dungeon, zone_x, zone_y, map_seed, environ) VALUES (1, 3, 11, %d, %d);", 150, random->getSeed(), CAVE);
-                    sqlite3_finalize(res);
-
-                    database->saveQuery(res, "SELECT mid FROM maps ORDER BY mid DESC LIMIT 1;", 50);
-                    map_id = (unsigned int)sqlite3_column_int(res, 0);
-                    sqlite3_finalize(res);
-                #endif
-
 
     do {
         /*********************************************************************************
           Initialization: Steps through each tile, clears it, and randomly assigns a wall
           tile.
         **********************************************************************************/
-        //clearTiles();
 
         r=boundariesRow;
         //for(r=0; r < boundariesRow; ++r) {
@@ -237,20 +184,25 @@ unsigned int cave::generate()
             }while(--c);
         }while(--r);
 
-
-
-        for(r=0; r < boundariesRow; ++r) {
-            for(c=0; c < boundariesCol; ++c) {
-                if(c==0 || r==0 || c == dimCol || r == dimRow) {
-                //Setting walls in bare location based on wall frequency
-                    grid[0][r][c].setWall();
-                }
-            }
-        }
+        //Draw boundaries
+        r=boundariesRow;
+        do {
+        //for(r=0; r < boundariesRow; ++r) {
+            --r;
+            grid[0][r][0].setWall();
+            grid[0][r][dimCol].setWall();
+        }while(r);
+        c=boundariesCol;
+        do {
+        //for(c=0; c < boundariesCol; ++c) {
+            --c;
+            grid[0][0][c].setWall();
+            grid[0][dimRow][c].setWall();
+        }while(c);
 
     }while(0 == floodFill(0.45));
 
-    return map_id; //doubles as a success (true > 0)
+    return seed; //doubles as a success (true > 0)
 }
 
 int cave::floodFill(float expectedRatio)
@@ -282,21 +234,21 @@ int cave::floodFill(float expectedRatio)
         }
     }
 
-    unsigned short wallCount=0;
     unsigned short floorCount=0;
     unsigned short attempts=0;
     const unsigned short maxAttempts=5;
     float ratio = (float)floorCount / (float)total;
 
-    while(ratio < expectedRatio && attempts != maxAttempts) {
-    //Main loop. Continues to flood fill until empty tile count is
-    //greater than the exprected ratio and attempts are less than the
-    //maximum. If the maximum attempts is exceeded, the grid may not be
-    //the best fit or the randomly selected points may not be choosing
-    //a satisfactorily connected tile. Another grid will be generated.
+/************************************************************************
+    Main loop. Continues to flood fill until empty tile count is
+    greater than the exprected ratio and attempts are less than the
+    maximum. If the maximum attempts is exceeded, the grid may not be
+    the best fit or the randomly selected points may not be choosing
+    a satisfactorily connected tile. Another grid will be generated.
+************************************************************************/
 
+    while(ratio < expectedRatio && attempts < maxAttempts) {
         //Initialize gridTemp. Set walls and empty tiles.
-        wallCount=0;
         r=boundariesRow;
         do {
         //for(r=0; r < boundariesRow; ++r) {
@@ -307,7 +259,6 @@ int cave::floodFill(float expectedRatio)
                 --c;
                 if(grid[0][r][c].isWall()) {
                     gridTemp[0][r][c]=1;
-                    ++wallCount;
                 }else{
                     gridTemp[0][r][c]=0;
                 }
@@ -316,21 +267,31 @@ int cave::floodFill(float expectedRatio)
 
         //Fill empty space. Calculate ratio. Keep track of attempts.
         floorCount=0;
-        fill(gridTemp, random->IRandom(0, dimRow), random->IRandom(0, dimCol), wallCount,
-             total, floorCount, dimRow, dimCol);
+        fill(gridTemp, random->IRandom(0, dimRow), random->IRandom(0, dimCol), total,
+             floorCount, dimRow, dimCol);
         ratio = (float)floorCount / (float)total;
-        if(floorCount > 0 && ratio < expectedRatio) {
+
+        //if(floorCount > 0 && ratio < expectedRatio) {
+        if(floorCount > 0) {
+        //Only increase counter if we counted something.
+        //Sometimes the random square we check is filled.
             ++attempts;
         }
     }
 
-    unsigned short returnVal = 1;
+/************************************************************************
+    Determine whether it was a good generation. If maxAttempts exceeded
+    then it wasn't. Assign returnVal accordingly.
+************************************************************************/
+
+    unsigned short result = 1; //success
     if(attempts > maxAttempts-1) {
-        returnVal=0;
+    //Bad generation if we go over attempts
+        result=0; //failure
     }
 
+    if(result == 1) {
     //Patch
-    if(returnVal) {
         r=dimRow;
         do {
         //for(r=0; r < dimRow; ++r) {
@@ -341,27 +302,15 @@ int cave::floodFill(float expectedRatio)
             //for(c=0; c < dimCol; ++c) {
                 if(gridTemp[0][r][c]==0) {
                     grid[0][r][c].setWall();
-                    ++wallCount;
                 }
             }while(c);
         }while(r);
-
-/*        #ifdef ASSERTION_TEST
-            char message[110];
-            snprintf(message, 110, "ASSERTION TEST: wallCount (%d) + floorCount (%d) == total (%d)", wallCount, floorCount, total);
-            ILogging * logger = locator::getLogging();
-            logger->trace(message);
-            assert(wallCount + floorCount == total);
-        #endif
-        #ifdef DEBUG
-            if(wallCount + floorCount != total) {
-                ILogging * logger = locator::getLogging();
-                logger->warn("Unconnected areas in grid.");
-            }
-        #endif*/
     }
 
-    //gridTemp deletion
+/************************************************************************
+    Delete tempGrid and return success or failure
+************************************************************************/
+
     for(unsigned short l=0; l < dimLvl; ++l) {
         for(r=0; r < boundariesRow; ++r) {
             delete[] gridTemp[l][r];
@@ -372,28 +321,27 @@ int cave::floodFill(float expectedRatio)
 
     delete[] gridTemp;
 
-    return returnVal;
+    return result;
 }
 
-void cave::fill(int *** & gridTemp, long r, long c, unsigned short wallCount, unsigned short total,
-                   unsigned short & floorCount, const unsigned short & dimRow,
-                   const unsigned short & dimCol)
+void cave::fill(int *** & gridTemp, long r, long c, unsigned short total, unsigned short & floorCount,
+                const unsigned short & dimRow, const unsigned short & dimCol)
 {
     if(gridTemp[0][r][c] == 0) {
         ++floorCount;
         gridTemp[0][r][c] = 1; //already touched
 
         if(r+1 < dimRow) {
-            fill(gridTemp, r+1, c, wallCount, total, floorCount, dimRow, dimCol);
+            fill(gridTemp, r+1, c, total, floorCount, dimRow, dimCol);
         }
         if(r-1 > 1) {
-            fill(gridTemp, r-1, c, wallCount, total, floorCount, dimRow, dimCol);
+            fill(gridTemp, r-1, c, total, floorCount, dimRow, dimCol);
         }
         if(c+1 < dimCol) {
-            fill(gridTemp, r, c+1, wallCount, total, floorCount, dimRow, dimCol);
+            fill(gridTemp, r, c+1, total, floorCount, dimRow, dimCol);
         }
         if(c-1 > 1) {
-            fill(gridTemp, r, c-1, wallCount, total, floorCount, dimRow, dimCol);
+            fill(gridTemp, r, c-1, total, floorCount, dimRow, dimCol);
         }
     }
 }

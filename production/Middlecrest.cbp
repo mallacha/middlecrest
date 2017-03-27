@@ -10,13 +10,9 @@
 				<Option output="Middlecrest" prefix_auto="1" extension_auto="1" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Linker>
-					<Add option="../code/location.o" />
-				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-fomit-frame-pointer" />
 			<Add option="-Wshadow" />
 			<Add option="-Wswitch-default" />
 			<Add option="-ansi" />
@@ -27,6 +23,7 @@
 			<Add option="-s" />
 			<Add option="C:\pdcurses\win32\pdcurses.a" />
 			<Add option="C:\sean\game2\code\sqlite3.o" />
+			<Add option="../code/location.o" />
 			<Add directory="C:/sean/game2" />
 		</Linker>
 		<ExtraCommands>

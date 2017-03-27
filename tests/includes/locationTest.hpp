@@ -10,7 +10,7 @@ class IMapTest : public IMap
         IMapTest() {}
         ~IMapTest() {}
 
-        int generate();
+        long int generate();
 };
 
 #endif

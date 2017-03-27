@@ -30,10 +30,11 @@ unsigned long TRandomMersenneTest::RandomInit(long int seed)
 
     unitTestHarness->add("Testing RNG Initialization");
 
+    IRand * random = new TRandomMersenne;
+
     unsigned long status = 0;
     if(seed == 200) { //seed should be 200 so we can
                       //check the seed against BRandom
-        IRand * random = new TRandomMersenne;
 
         random->RandomInit(seed);
 
@@ -47,9 +48,17 @@ unsigned long TRandomMersenneTest::RandomInit(long int seed)
         //Verifying a different seed, so different BRandom
             status = 0;
         }
-
-        delete random;
     }
+
+    unitTestHarness->displayResult(status);
+
+    unitTestHarness->add("RNG Seed Retrieval");
+
+    long orig_seed = random->RandomInit(401);
+
+    unitTestHarness->displayResult(orig_seed == 401);
+
+    delete random;
 
     return status;
 }

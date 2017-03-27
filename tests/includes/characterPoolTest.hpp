@@ -4,14 +4,15 @@
 #pragma once
 #include "../../includes/characterPool.hpp"
 
-class ICharacterPoolTest : public characterPool
+class characterPoolTest : public characterPool
 {
     public:
-        ICharacterPoolTest() {}
-        ~ICharacterPoolTest() {}
+        characterPoolTest() {}
+        ~characterPoolTest() {}
 
         int allocate(int, int);
         void process() {}
+        int setRandomStartingLocation();
 };
 
 #endif

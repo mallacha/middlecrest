@@ -19,16 +19,28 @@ IDisplay::~IDisplay()
     random_xy[1]=0;
 }
 
-void IDisplay::set(LocationType type)
+void IDisplay::set(unsigned int value)
 {
+    IDatabase * database = locator::getDatabase();
+    IRand * random = locator::getRNG();
+
+    sqlite3_stmt* res;
+
+    database->saveQuery(res, "SELECT map_seed, environ FROM maps WHERE mid=%d;", 60, value);
+    long seed = (unsigned int)sqlite3_column_int(res, 0);
+    unsigned short location_type = (unsigned short)sqlite3_column_int(res, 1);
+    sqlite3_finalize(res);
+
     if(map) {
         delete map;
     }
 
-    switch(type) {
+    switch(location_type) {
         case 1: map = new cave(); break;
         default: map = new IMap();
     }
+    map->setMapId(value);
+    map->setSeed(seed);
 }
 
 int * IDisplay::getRandomStartingLocation()
@@ -46,13 +58,35 @@ int * IDisplay::getRandomStartingLocation()
     return random_xy;
 }
 
-void IDisplay::generate(const unsigned int index)
+unsigned int IDisplay::createGameMap(LocationType type)
 {
-    unsigned int map_id = map->generate(index);
+    IDatabase * database = locator::getDatabase();
+    IRand * random = locator::getRNG();
 
-    //TODO: for testing purposes
-    unsigned int link = map->generate();
-    map->linkMaps(link, map_id);
+    sqlite3_stmt* res;
+    const long seed = random->RandomInit(rand());
+
+    database->saveQuery(res, "INSERT INTO maps (is_dungeon, zone_x, zone_y, map_seed, environ) VALUES (1, 3, 11, %d, %d);", 150, seed, type);
+    sqlite3_finalize(res);
+
+    database->saveQuery(res, "SELECT mid FROM maps ORDER BY mid DESC LIMIT 1;", 50);
+    unsigned int map_id = (unsigned int)sqlite3_column_int(res, 0);
+    sqlite3_finalize(res);
+
+    return map_id;
+}
+
+void IDisplay::linkMaps(unsigned int source, unsigned int destination)
+{
+    IDatabase * database = locator::getDatabase();
+    sqlite3_stmt* res;
+
+    database->saveQuery(res, "INSERT INTO objects (mid, mid_linkage, type, subtype) VALUES (%d, %d, 'object', 'link');", 100, source, destination);
+    sqlite3_finalize(res);
+    database->saveQuery(res, "INSERT INTO objects (mid, mid_linkage, type, subtype) VALUES (%d, %d, 'object', 'link');", 100, destination, source);
+    sqlite3_finalize(res);
+
+    //success or failure will be logged for queries
 }
 
 void nullDisplay::log()
@@ -72,8 +106,8 @@ ascii::ascii()
 {
     my_map=NULL;
     my_loc=NULL;
-    dimCol=83; //columns
-    dimRow=38; //rows
+    dimCol=84; //columns
+    dimRow=39; //rows
 }
 
 ascii::~ascii()
@@ -119,10 +153,10 @@ void ascii::draw()
             for(cols=0; cols < dimCol; ++cols) {
                 if(dungeon[lvls][rows][cols].isAttribute(IMPASSIBLE_ATTRIBUTE)) {
                 //Impassible
-                    mvwprintw(my_map, 1+rows, 1+cols, "#");
+                    mvwprintw(my_map, rows, cols, "#");
                 } else {
                 //Passible
-                    mvwprintw(my_map, 1+rows, 1+cols, ".");
+                    mvwprintw(my_map, rows, cols, ".");
                 }
             }
         }
@@ -173,7 +207,7 @@ void ascii::draw()
                 obj = characterObject[i];
 
                 if(obj.lifetimeObject.isActive()) {
-                    mvwprintw(my_map, 1+obj.getYCoord(), 1+obj.getXCoord(), "%c", obj.getSigil());
+                    mvwprintw(my_map, obj.getYCoord(), obj.getXCoord(), "%c", obj.getSigil());
                 }
 
                 ++i;

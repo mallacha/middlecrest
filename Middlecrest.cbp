@@ -17,17 +17,16 @@
 					<Add option="-Wswitch-default" />
 					<Add option="-ansi" />
 				</Compiler>
-				<Linker>
-					<Add option="-s" />
-				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-pg" />
 			<Add option="-DDEBUG -DASSERTION_TEST" />
 			<Add directory="C:/sean/game2" />
 			<Add directory="C:/pdcurses/win32a" />
 		</Compiler>
 		<Linker>
+			<Add option="-pg -lgmon" />
 			<Add option="C:\pdcurses\win32\pdcurses.a" />
 			<Add option="C:\sean\game2\code\sqlite3.o" />
 			<Add directory="C:/sean/game2" />

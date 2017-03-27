@@ -57,8 +57,12 @@ int main(int argc, char *argv[])
     //character * object = characters->getCharacterByPoolId(ithElement);
 
     display = locator::getDisplay();
-    display->set(CAVE);
-    display->generate(index);
+
+    unsigned map_id = display->createGameMap(CAVE);
+    display->set(map_id);
+    unsigned int link = display->createGameMap(WILDERNESS);
+    display->linkMaps(link, map_id);
+    display->generate();
 
     characters->setRandomStartingLocation(index);
 

@@ -12,19 +12,23 @@ class IDisplay
         IDisplay();
         virtual ~IDisplay();
 
-        //Setters
         virtual void draw() = 0;
         virtual void create() = 0;
+        virtual int isImpassible(unsigned short, unsigned short, unsigned short) = 0;
+        unsigned int createGameMap(LocationType);
+        void linkMaps(unsigned int, unsigned int);
+        int generate() { return map->generate(); }
+
+        //Setters
         virtual unsigned int getDimX() = 0;
         virtual unsigned int getDimY() = 0;
-        virtual int isImpassible(unsigned short, unsigned short, unsigned short) = 0;
-        void set(LocationType);
+        void set(unsigned int);
+
+        //Getters
         IMap * getMap() { return map; }
         int * getRandomStartingLocation();
-        void generate(const unsigned int value); //{ map->generate(value); }
 
     protected:
-        int generate() { return map->generate(); }
 
         IMap * map;
         int random_xy[2];
@@ -42,7 +46,6 @@ class ascii : public IDisplay
         inline unsigned int getDimY() { return (unsigned int)(dimRow-1); }
         inline int isImpassible(unsigned short z, unsigned short x, unsigned short y)
                                  { return map->isImpassible(z, x, y); }
-        inline unsigned int generate() { return map->generate(); }
 
     private:
         WINDOW * my_map; //Playing map (sometimes doubles as menu window)
@@ -64,7 +67,6 @@ class nullDisplay : public IDisplay
         inline unsigned int getDimX() { log(); return 0; }
         inline unsigned int getDimY() { log(); return 0; }
         int isImpassible(unsigned short z , unsigned short x, unsigned short y) { log(); return 0; }
-        inline int generate() { log(); return 0; }
 
     private:
         void log();

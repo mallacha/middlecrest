@@ -1,9 +1,9 @@
 # depslib dependency file v1.0
-1490411548 source:c:\sean\game2\code\ascii.cpp
+1490562831 source:c:\sean\game2\code\ascii.cpp
 	"../includes/ascii.hpp"
 	"../includes/service.hpp"
 
-1490411132 c:\sean\game2\includes\ascii.hpp
+1490562558 c:\sean\game2\includes\ascii.hpp
 	"lib.h"
 	"location.hpp"
 
@@ -22,7 +22,7 @@
 	<stdio.h>
 	<wchar.h>
 
-1490473113 c:\sean\game2\includes\location.hpp
+1490561716 c:\sean\game2\includes\location.hpp
 	"logging.hpp"
 	"configuration.hpp"
 
@@ -48,14 +48,14 @@
 	"logging.hpp"
 	"sqlite3.h"
 
-1490172356 c:\sean\game2\includes\sqlite3.h
+1438250818 c:\sean\game2\includes\sqlite3.h
 	<stdarg.h>
 
-1490408858 c:\sean\game2\includes\randomc.hpp
+1490504277 c:\sean\game2\includes\randomc.hpp
 	"lib.h"
 	"logging.hpp"
 
-1490405710 c:\sean\game2\includes\characterpool.hpp
+1490559492 c:\sean\game2\includes\characterpool.hpp
 	"lib.h"
 	"configuration.hpp"
 	"pool.hpp"
@@ -65,7 +65,7 @@
 1490404987 c:\sean\game2\includes\pool.hpp
 	"lib.h"
 
-1490172356 c:\sean\game2\includes\character.hpp
+1490514397 c:\sean\game2\includes\character.hpp
 	"lib.h"
 	"configuration.hpp"
 	"object.hpp"
@@ -83,7 +83,7 @@
 	"logging.hpp"
 	<vector>
 
-1490405887 c:\sean\game2\includes\game.hpp
+1490502004 c:\sean\game2\includes\game.hpp
 	"../includes/lib.h"
 	"../includes/logging.hpp"
 	"../includes/utility.hpp"
@@ -98,7 +98,7 @@
 	"locationTest.hpp"
 	"displayTest.hpp"
 
-1490408961 c:\sean\game2\tests\includes\randomctest.hpp
+1490565611 c:\sean\game2\tests\includes\randomctest.hpp
 	"../../includes/randomc.hpp"
 
 1490172356 c:\sean\game2\tests\includes\pooltest.hpp
@@ -107,7 +107,7 @@
 1490172356 c:\sean\game2\tests\includes\characterpooltest.hpp
 	"../../includes/characterPool.hpp"
 
-1490172356 c:\sean\game2\tests\includes\locationtest.hpp
+1490565500 c:\sean\game2\tests\includes\locationtest.hpp
 	"../../includes/location.hpp"
 
 1490411662 c:\sean\game2\tests\includes\displaytest.hpp
@@ -120,11 +120,11 @@
 1490406149 c:\sean\game2\includes\cache.hpp
 	"lib.h"
 
-1490172356 source:c:\sean\game2\code\character.cpp
+1490557059 source:c:\sean\game2\code\character.cpp
 	"../includes/service.hpp"
 	"../includes/utility.hpp"
 
-1490333945 source:c:\sean\game2\code\characterpool.cpp
+1490559492 source:c:\sean\game2\code\characterpool.cpp
 	"../includes/characterPool.hpp"
 	"../includes/service.hpp"
 	"../includes/command.hpp"
@@ -133,7 +133,7 @@
 	"character.hpp"
 	"event.hpp"
 
-1490406275 source:c:\sean\game2\code\command.cpp
+1490501759 source:c:\sean\game2\code\command.cpp
 	"../includes/command.hpp"
 	"../includes/service.hpp"
 
@@ -147,14 +147,14 @@
 	"../includes/event.hpp"
 	"../includes/service.hpp"
 
-1490172356 source:c:\sean\game2\code\game.cpp
+1490555013 source:c:\sean\game2\code\game.cpp
 	"../includes/game.hpp"
 	"../includes/service.hpp"
 
 1490405276 source:c:\sean\game2\code\logging.cpp
 	"../includes/logging.hpp"
 
-1490407565 source:c:\sean\game2\code\mersenne.cpp
+1490486425 source:c:\sean\game2\code\mersenne.cpp
 	"../includes/service.hpp"
 
 1490172356 source:c:\sean\game2\code\object.cpp
@@ -183,7 +183,7 @@
 	"../../includes/service.hpp"
 	"../includes/characterPoolTest.hpp"
 
-1490411676 source:c:\sean\game2\tests\code\displaytest.cpp
+1490565519 source:c:\sean\game2\tests\code\displaytest.cpp
 	"../../includes/service.hpp"
 	"../includes/displayTest.hpp"
 	"../../includes/utility.hpp"
@@ -196,7 +196,7 @@
 	"../../includes/service.hpp"
 	"../includes/poolTest.hpp"
 
-1490409200 source:c:\sean\game2\tests\code\testharness.cpp
+1490565482 source:c:\sean\game2\tests\code\testharness.cpp
 	"../../includes/service.hpp"
 	"../../includes/utility.hpp"
 	<stdio.h>
@@ -206,8 +206,11 @@
 1490172356 source:c:\sean\game2\tests\main.cpp
 	"../includes/service.hpp"
 
-1490419839 source:c:\sean\game2\tests\code\locationtest.cpp
+1490565535 source:c:\sean\game2\tests\code\locationtest.cpp
 	"../../includes/service.hpp"
 	"../../includes/utility.hpp"
 	"../includes/locationTest.hpp"
+
+1490568707 source:c:\sean\game2\code\location.cpp
+	"../includes/service.hpp"
 

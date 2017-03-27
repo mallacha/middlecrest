@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int IMapTest::generate()
+long int IMapTest::generate()
 {
     IUnitTest * unitTestHarness = locator::getUnitTests();
 

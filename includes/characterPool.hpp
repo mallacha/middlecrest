@@ -32,6 +32,8 @@ class characterPool : public IPool
         characterPool();
         ~characterPool();
 
+        void process(); //Process active objects
+
         //Getters
         character * getPool() { return poolArray; }
         inline long getLastActive() { return lastActive; }
@@ -39,24 +41,30 @@ class characterPool : public IPool
         //character * getCharacterByObjectId(unsigned int i) {}
         unsigned int getObjectIdByPoolId(unsigned int index) { return poolArray[index].id.getID(); }
         unsigned int getSaveIdByPoolId(long index) { return poolArray[index].getPlayerSaveId(); }
-
         unsigned int getXCoordByPoolId(unsigned int);
         unsigned int getYCoordByPoolId(unsigned int);
         unsigned int getZCoordByPoolId(unsigned int);
 
         //Setters
-        int allocate(unsigned short, unsigned short); //Allocate memory for pool.
+        #ifdef UNIT_TESTS
+        //For testing purposes
+            virtual int allocate(unsigned short, unsigned short) = 0;
+        #else
+            int allocate(unsigned short, unsigned short);
+        #endif
         int createCharacter(CharacterType);
         void save();
         void save(unsigned int index) { poolArray[index].save(); }
-
-        void process(); //Process active objects
-
         int setXCoordByPoolId(unsigned int, unsigned int);
         int setYCoordByPoolId(unsigned int, unsigned int);
         int setZCoordByPoolId(unsigned int, unsigned int);
         int setMapIdByPoolId(unsigned int, unsigned int);
-        void setRandomStartingLocation(unsigned int);
+        #ifdef UNIT_TESTS
+        //For testing purposes
+            virtual void setRandomStartingLocation(unsigned int) = 0;
+        #else
+            void setRandomStartingLocation(unsigned int);
+        #endif
 
     private:
         unsigned int lastActive; /* Stores last active element. Same type as pool.hpp->IPool::poolSize

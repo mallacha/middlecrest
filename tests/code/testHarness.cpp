@@ -35,14 +35,15 @@ void testHarness::run()
 
     printf("\nTesting Character Pool Functionality...\n");
     //With interface inherited interface this could look like:
-    //ICharacterPool * charactersTest = new characterPoolTest();
-    //charactersTest->allocate(1, 1);
-    //Objects in game could inherit from ICharacterPool interface?
-    ICharacterPoolTest * charactersTest = new ICharacterPoolTest();
+    characterPoolTest * charactersTest = new characterPoolTest();
     charactersTest->allocate(1, 1);
+    int generations = charactersTest->setRandomStartingLocation();
+
+    printf("Start location generations: %d\nPercentge of failure: Less than %.9f%%\n", generations, 1/(float)generations);
 
     //Files covered
     filesCovered += 0.5; //character pool partially written
+    filesCovered += 0.25; //display.cpp partially covered
 
     displayTests();
     mapTests();
@@ -83,7 +84,7 @@ void testHarness::RNGTests()
 
     printf("Testing Random Number Generation...\n");
     IRand * random = new TRandomMersenneTest();
-    displayResult(random->RandomInit(200));
+    random->RandomInit(200);
     displayResult(random->IRandom(1, 50));
 
     //All lines covered sufficiently
@@ -118,7 +119,7 @@ void testHarness::basicPoolTests()
 void testHarness::mapTests()
 {
     printf("\nTesting Map Algorithms...\n");
-    IMapTest * mapTest = new IMapTest();
+    IMap * mapTest = new IMapTest();
     int mapGenerations = mapTest->generate();
 
     printf("Map generations: %d\nPercentge of failure: Less than %.6f%%\n", mapGenerations, 1/(float)mapGenerations);
@@ -134,16 +135,9 @@ void testHarness::mapTests()
 
 void testHarness::displayTests()
 {
-/*    printf("\nTesting Display Algorithms...\n");
-    IDisplay * displayTest = new IDisplayTest();
-    int generations = displayTest->randomStartingLocation();
+    printf("\nTesting Display Algorithms...\n");
 
-    printf("Start location generations: %d\nPercentge of failure: Less than %.9f%%\n", generations, 1/(float)generations);
-
-    //Code coverage
-    ++filesCovered; //ascii.cpp
-    incCoverageTotal(13);
-    incCoverageCurrent(13);*/
+    displayResult(SKIPPED);
 }
 
 void testHarness::begin()
