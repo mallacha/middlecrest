@@ -1,0 +1,183 @@
+# depslib dependency file v1.0
+1490604521 source:/Users/seanb/sortingMiddlecrest/middlecrest/code/ascii.cpp
+	"../includes/ascii.hpp"
+	"../includes/service.hpp"
+
+1490604521 /Users/seanb/sortingMiddlecrest/middlecrest/includes/ascii.hpp
+	"lib.h"
+	"location.hpp"
+
+1490606417 /Users/seanb/sortingMiddlecrest/middlecrest/includes/lib.h
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<limits.h>
+	<ncurses.h>
+	<curses.h>
+	<assert.h>
+	<iostream>
+
+1490604521 /Users/seanb/sortingMiddlecrest/middlecrest/includes/location.hpp
+	"logging.hpp"
+	"configuration.hpp"
+
+1490604521 /Users/seanb/sortingMiddlecrest/middlecrest/includes/logging.hpp
+	"lib.h"
+
+1490604521 /Users/seanb/sortingMiddlecrest/middlecrest/includes/configuration.hpp
+	"lib.h"
+
+1490604521 /Users/seanb/sortingMiddlecrest/middlecrest/includes/service.hpp
+	"lib.h"
+	"logging.hpp"
+	"ascii.hpp"
+	"database.hpp"
+	"randomc.hpp"
+	"characterPool.hpp"
+	"event.hpp"
+	"game.hpp"
+	"../tests/includes/testHarness.hpp"
+
+1490604521 /Users/seanb/sortingMiddlecrest/middlecrest/includes/database.hpp
+	"lib.h"
+	"logging.hpp"
+	"sqlite3.h"
+
+1490604521 /Users/seanb/sortingMiddlecrest/middlecrest/includes/sqlite3.h
+	<stdarg.h>
+
+1490604521 /Users/seanb/sortingMiddlecrest/middlecrest/includes/randomc.hpp
+	"lib.h"
+	"logging.hpp"
+
+1490604521 /Users/seanb/sortingMiddlecrest/middlecrest/includes/characterPool.hpp
+	"lib.h"
+	"configuration.hpp"
+	"pool.hpp"
+	"character.hpp"
+	"logging.hpp"
+
+1490604521 /Users/seanb/sortingMiddlecrest/middlecrest/includes/pool.hpp
+	"lib.h"
+
+1490604521 /Users/seanb/sortingMiddlecrest/middlecrest/includes/character.hpp
+	"lib.h"
+	"configuration.hpp"
+	"object.hpp"
+
+1490604521 /Users/seanb/sortingMiddlecrest/middlecrest/includes/object.hpp
+	"lib.h"
+	"turnBased.hpp"
+
+1490604521 /Users/seanb/sortingMiddlecrest/middlecrest/includes/turnBased.hpp
+	"lib.h"
+	"configuration.hpp"
+
+1490604521 /Users/seanb/sortingMiddlecrest/middlecrest/includes/event.hpp
+	"lib.h"
+	"logging.hpp"
+	<vector>
+
+1490604521 /Users/seanb/sortingMiddlecrest/middlecrest/includes/game.hpp
+	"../includes/lib.h"
+	"../includes/logging.hpp"
+	"../includes/utility.hpp"
+
+1490604521 /Users/seanb/sortingMiddlecrest/middlecrest/includes/utility.hpp
+	"../includes/lib.h"
+
+1490604521 /Users/seanb/sortingMiddlecrest/middlecrest/tests/includes/testHarness.hpp
+	"randomcTest.hpp"
+	"poolTest.hpp"
+	"characterPoolTest.hpp"
+	"locationTest.hpp"
+	"displayTest.hpp"
+
+1490604521 /Users/seanb/sortingMiddlecrest/middlecrest/tests/includes/randomcTest.hpp
+	"../../includes/randomc.hpp"
+
+1490604521 /Users/seanb/sortingMiddlecrest/middlecrest/tests/includes/poolTest.hpp
+	"../../includes/pool.hpp"
+
+1490604521 /Users/seanb/sortingMiddlecrest/middlecrest/tests/includes/characterPoolTest.hpp
+	"../../includes/characterPool.hpp"
+
+1490604521 /Users/seanb/sortingMiddlecrest/middlecrest/tests/includes/locationTest.hpp
+	"../../includes/location.hpp"
+
+1490604521 /Users/seanb/sortingMiddlecrest/middlecrest/tests/includes/displayTest.hpp
+	"../../includes/ascii.hpp"
+
+1490604521 source:/Users/seanb/sortingMiddlecrest/middlecrest/code/cache.cpp
+	"../includes/cache.hpp"
+	"../includes/utility.hpp"
+
+1490604521 /Users/seanb/sortingMiddlecrest/middlecrest/includes/cache.hpp
+	"lib.h"
+
+1490604521 source:/Users/seanb/sortingMiddlecrest/middlecrest/code/character.cpp
+	"../includes/service.hpp"
+	"../includes/utility.hpp"
+
+1490604521 source:/Users/seanb/sortingMiddlecrest/middlecrest/code/command.cpp
+	"../includes/command.hpp"
+	"../includes/service.hpp"
+
+1490604521 /Users/seanb/sortingMiddlecrest/middlecrest/includes/command.hpp
+	"character.hpp"
+	"event.hpp"
+
+1490607858 source:/Users/seanb/sortingMiddlecrest/middlecrest/code/database.cpp
+	"../includes/database.hpp"
+	"../includes/configuration.hpp"
+	"../includes/service.hpp"
+	<fstream>
+
+1490604521 source:/Users/seanb/sortingMiddlecrest/middlecrest/code/event.cpp
+	"../includes/event.hpp"
+	"../includes/service.hpp"
+
+1490604521 source:/Users/seanb/sortingMiddlecrest/middlecrest/code/game.cpp
+	"../includes/game.hpp"
+	"../includes/service.hpp"
+
+1490604521 source:/Users/seanb/sortingMiddlecrest/middlecrest/code/location.cpp
+	"../includes/service.hpp"
+
+1490604521 source:/Users/seanb/sortingMiddlecrest/middlecrest/code/logging.cpp
+	"../includes/logging.hpp"
+
+1490604521 source:/Users/seanb/sortingMiddlecrest/middlecrest/code/mersenne.cpp
+	"../includes/service.hpp"
+
+1490604521 source:/Users/seanb/sortingMiddlecrest/middlecrest/code/object.cpp
+	"../includes/object.hpp"
+
+1490604521 source:/Users/seanb/sortingMiddlecrest/middlecrest/code/pool.cpp
+	"../includes/service.hpp"
+
+1490604521 source:/Users/seanb/sortingMiddlecrest/middlecrest/code/screens.cpp
+	"../includes/screens.hpp"
+	"../includes/service.hpp"
+
+1490604521 /Users/seanb/sortingMiddlecrest/middlecrest/includes/screens.hpp
+	"lib.h"
+
+1490604521 source:/Users/seanb/sortingMiddlecrest/middlecrest/code/service.cpp
+	"../includes/service.hpp"
+
+1490604521 source:/Users/seanb/sortingMiddlecrest/middlecrest/code/turnBased.cpp
+	"../includes/turnBased.hpp"
+
+1490604521 source:/Users/seanb/sortingMiddlecrest/middlecrest/code/utility.cpp
+	"../includes/utility.hpp"
+
+1490607951 source:/Users/seanb/sortingMiddlecrest/middlecrest/development/mac/main.cpp
+	"../../includes/service.hpp"
+	"../../includes/screens.hpp"
+
+1490607651 source:/Users/seanb/sortingMiddlecrest/middlecrest/code/characterPool.cpp
+	"../includes/characterPool.hpp"
+	"../includes/service.hpp"
+	"../includes/command.hpp"
+

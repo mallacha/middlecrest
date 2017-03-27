@@ -26,8 +26,8 @@ using namespace std;
 /**********************************************************
                      Helper Functions
 ***********************************************************/
-
-int saveDataTableCreation(const char * select_query, int buffer1, const char * query, int buffer2)
+#include <iostream>
+int saveDataTableCreation(const char * select_query, int buffer1, const char * create_query, int buffer2)
 {
     IDatabase * database = locator::getDatabase();
     sqlite3_stmt* res;
@@ -39,7 +39,7 @@ int saveDataTableCreation(const char * select_query, int buffer1, const char * q
     if(sqlite3_column_type(res, 0) == 5) {
     //If result row is null (i.e. no table, column type is 5)
         sqlite3_finalize(res);
-        queryResult = database->saveQuery(res, query, buffer2);
+        queryResult = database->saveQuery(res, create_query, buffer2);
     }
                 #ifdef DEBUG
                 else {

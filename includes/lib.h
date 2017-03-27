@@ -25,7 +25,11 @@
     //#include <stdarg.h>
     #include <time.h>
     #include <limits.h>
-    #include <curses.h>
+    #ifdef NCURSES
+        #include <ncurses.h>
+    #else
+        #include <curses.h>
+    #endif
 
     #ifdef ASSERTION_TEST
         #include <assert.h>
