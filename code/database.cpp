@@ -26,7 +26,7 @@ using namespace std;
 /**********************************************************
                      Helper Functions
 ***********************************************************/
-#include <iostream>
+
 int saveDataTableCreation(const char * select_query, int buffer1, const char * create_query, int buffer2)
 {
     IDatabase * database = locator::getDatabase();
@@ -127,7 +127,7 @@ int sqliteDatabase::retrieve(sqlite3_stmt *& res, const char *& format, const ch
 //Queries database with parameterized queries.
 {
     if(query == NULL) {
-        query = new char[bufferSize]+1;
+        query = new char[bufferSize+1];
     } else {
         #ifdef DEBUG
         //Log error. Query buffer must not be null
