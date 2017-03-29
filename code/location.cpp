@@ -53,8 +53,8 @@ long cave::generate()
     unsigned short c=0;
     short i=0;
     short count=0;
-    const short repeat=10; //Number of iterations: 10 = sea cave (something hollowed out by water, 2 = lava cave, 3 = ice/limestone cave, 1 = mud cave
-    const short wallFreq=40; //Frequency of wall
+    const unsigned short repeat=10; //Number of iterations: 10 = sea cave (something hollowed out by water, 2 = lava cave, 3 = ice/limestone cave, 1 = mud cave
+    const unsigned short wallFreq=40; //Frequency of wall
     IRand * random = locator::getRNG();
     IDisplay * display = locator::getDisplay();
     random->randomInit(seed);

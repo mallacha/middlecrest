@@ -13,9 +13,11 @@
 				<Option compiler="gcc" />
 				<Linker>
 					<Add option="../code/location.o" />
+					<Add option="../code/randomc.o" />
 				</Linker>
 				<ExtraCommands>
 					<Add before="g++ -O3 -DDEBUG -DBETA -IC:\sean\game2 -IC:\pdcurses\win32a -c ../code/location.cpp -o ../code/location.o" />
+					<Add before="g++ -O3 -DDEBUG -DBETA -IC:\sean\game2 -IC:\pdcurses\win32a -c ../code/randomc.cpp -o ../code/randomc.o" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
@@ -46,9 +48,11 @@
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../code/logging.cpp" />
-		<Unit filename="../code/mersenne.cpp" />
 		<Unit filename="../code/object.cpp" />
 		<Unit filename="../code/pool.cpp" />
+		<Unit filename="../code/randomc.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="../code/screens.cpp" />
 		<Unit filename="../code/service.cpp" />
 		<Unit filename="../code/turnBased.cpp" />
@@ -70,7 +74,9 @@
 		<Unit filename="../includes/logging.hpp" />
 		<Unit filename="../includes/object.hpp" />
 		<Unit filename="../includes/pool.hpp" />
-		<Unit filename="../includes/randomc.hpp" />
+		<Unit filename="../includes/randomc.hpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="../includes/screens.hpp" />
 		<Unit filename="../includes/service.hpp" />
 		<Unit filename="../includes/sqlite3.h" />

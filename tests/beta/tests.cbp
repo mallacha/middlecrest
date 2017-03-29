@@ -27,10 +27,12 @@
 			<Add option="C:\pdcurses\win32\pdcurses.a" />
 			<Add option="C:\sean\game2\code\sqlite3.o" />
 			<Add option="../../code/location.o" />
+			<Add option="../../code/randomc.o" />
 			<Add directory="C:/sean/game2" />
 		</Linker>
 		<ExtraCommands>
 			<Add before="g++ -O3 -DDEBUG -DBETA -DUNIT_TEST -IC:\sean\game2 -IC:\pdcurses\win32a -c ../../code/location.cpp -o ../../code/location.o" />
+			<Add before="g++ -O3 -DDEBUG -DBETA -DUNIT_TEST -IC:\sean\game2 -IC:\pdcurses\win32a -c ../../code/randomc.cpp -o ../../code/randomc.o" />
 			<Mode after="always" />
 		</ExtraCommands>
 		<Unit filename="../../code/ascii.cpp">
@@ -70,7 +72,9 @@
 		<Unit filename="../../code/pool.cpp">
 			<Option virtualFolder="game/" />
 		</Unit>
-		<Unit filename="../../code/randomc.cpp" />
+		<Unit filename="../../code/randomc.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="../../code/screens.cpp">
 			<Option virtualFolder="game/" />
 		</Unit>

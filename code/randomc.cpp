@@ -19,14 +19,14 @@ simpleRandom::~simpleRandom()
     next=0;
 }
 
-long simpleRandom::randomInit(long int value) {
+long simpleRandom::randomInit(unsigned int value) {
 // re-seed generator
     seed = value;
-
+    next = seed;
     return seed;
 }
 
-long simpleRandom::intRandom(long min, long max)
+unsigned int simpleRandom::intRandom(long min, long max)
 {
     return (long)(random()%(max-min)+min);
 }
@@ -34,7 +34,12 @@ long simpleRandom::intRandom(long min, long max)
 unsigned int simpleRandom::random()
 {
     next = next * 1103515245 + 12345;
-    return (unsigned int)(next/65536) % 32768;
+
+        #if defined(ASSERTION_TEST) || defined(UNIT_TEST)
+                assert((next % 32768) == (next & 32767));
+        #endif
+
+    return (unsigned int)((next/65536) & 32767);
 }
 
 void nullRNG::log()

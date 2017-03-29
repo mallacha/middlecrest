@@ -22,7 +22,6 @@ IDisplay::~IDisplay()
 void IDisplay::set(unsigned int value)
 {
     IDatabase * database = locator::getDatabase();
-    IRand * random = locator::getRNG();
 
     sqlite3_stmt* res;
 
