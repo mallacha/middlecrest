@@ -14,6 +14,7 @@
 		</Build>
 		<Compiler>
 			<Add option="-DUNIT_TEST" />
+			<Add option="-DASSERTION_TEST" />
 			<Add option="-DDEBUG" />
 			<Add option="-DSUCCESS=1" />
 			<Add option="-DSKIPPED=-1" />

@@ -1,4 +1,5 @@
 #include "../includes/service.hpp"
+#include <assert.h>
 
 using namespace std;
 
@@ -35,7 +36,7 @@ unsigned int simpleRandom::random()
 {
     next = next * 1103515245 + 12345;
 
-        #if defined(ASSERTION_TEST) || defined(UNIT_TEST)
+        #if defined(ASSERTION_TEST)
                 assert((next % 32768) == (next & 32767));
         #endif
 
