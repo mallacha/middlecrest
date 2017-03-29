@@ -20,20 +20,16 @@ IRand::~IRand()
 
 TRandomMersenne::TRandomMersenne()
 {
-    srand(time(0));
-    seed=rand();
-    RandomInit(seed);
+    seed = time(0);
+    srand(seed);
+    //seed=rand();
+    //RandomInit(seed);
 }
 
 unsigned long TRandomMersenne::RandomInit(long int value) {
 // re-seed generator
     seed = value;
-    unsigned long s = (unsigned long)seed;
-
-    for (mti=0; mti<N; ++mti) {
-        s = s * 29943829 - 1;
-        mt[mti] = s;
-    }
+    srand(seed);
 
     return seed;
 }
@@ -83,11 +79,12 @@ double TRandomMersenne::Random() {
 
 long TRandomMersenne::IRandom(long min, long max) {
   // output random integer in the interval min <= x <= max
-  long r;
+/*  long r;
   r = long((max - min + 1) * Random()) + min; // multiply interval with random and truncate
   if (r > max) r = max;
   if (max < min) return 0x80000000;
-  return r;
+  return r;*/
+  return (rand()%(max-min))+min;
 }
 
 void nullRNG::log()
