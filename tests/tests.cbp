@@ -13,6 +13,7 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-DASSERTION_TEST" />
 			<Add option="-DUNIT_TEST" />
 			<Add option="-DDEBUG" />
 			<Add option="-DSUCCESS=1" />
