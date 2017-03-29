@@ -57,7 +57,7 @@ long cave::generate()
     const short wallFreq=40; //Frequency of wall
     IRand * random = locator::getRNG();
     IDisplay * display = locator::getDisplay();
-    random->RandomInit(seed);
+    random->randomInit(seed);
     const unsigned short dimRow = display->getDimY();
     const unsigned short dimCol = display->getDimX();
     const unsigned short boundariesRow = dimRow+1;
@@ -78,7 +78,7 @@ long cave::generate()
             do {
                 --c;
                 grid[0][r][c].clear();
-                if(random->IRandom(0, 100) < wallFreq) {
+                if(random->intRandom(0, 100) < wallFreq) {
                 //Setting walls in bare location based on wall frequency
                     grid[0][r][c].setWall();
                 }
@@ -130,7 +130,7 @@ long cave::generate()
                     if(count > 4) { //At least 5 walls surrounding tile, create wall
                         grid[0][r][c].setWall();
                     }else{
-                        if(random->IRandom(0, 100) < 20) {
+                        if(random->intRandom(0, 100) < 20) {
                         //20% chance to clear tile
                             grid[0][r][c].clear();
                         }
@@ -267,7 +267,7 @@ int cave::floodFill(float expectedRatio)
 
         //Fill empty space. Calculate ratio. Keep track of attempts.
         floorCount=0;
-        fill(gridTemp, random->IRandom(0, dimRow), random->IRandom(0, dimCol), total,
+        fill(gridTemp, random->intRandom(0, dimRow), random->intRandom(0, dimCol), total,
              floorCount, dimRow, dimCol);
         ratio = (float)floorCount / (float)total;
 

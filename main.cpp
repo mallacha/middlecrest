@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     #endif
 
     //Random number generator
-    TRandomMersenne * random = new TRandomMersenne();
+    IRand * random = new simpleRandom();
     locator::provide(random);
 
     //Database service
@@ -76,7 +76,9 @@ int main(int argc, char *argv[])
 
     game->save();
 
+    //Working on connecting maps (game is aware of map_ids. Game object stores the current character it is pointing to, which informs the IDisplay which map id to pull from database).
+    //     ^ when character changes level or game changes focus to another character, it sends a signal to IDisplay to update its map_id (and location type) and that's what it draws
+    //Profile whether sqlite or cache is best to pull information/coordinates for objects (i links)
     //Create monsters and monster system
-    //Finish world creation (need to connect maps/zones)*/
 
 }

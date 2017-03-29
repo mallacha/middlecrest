@@ -18,7 +18,40 @@ IRand::~IRand()
 {
 }
 
-TRandomMersenne::TRandomMersenne()
+simpleRandom::simpleRandom()
+{
+    seed = time(0);
+    srand(seed);
+    next=seed;
+}
+
+simpleRandom::~simpleRandom()
+{
+    seed=0;
+    next=0;
+}
+
+long simpleRandom::randomInit(long int value) {
+// re-seed generator
+    seed = value;
+    //srand(seed);
+
+    return seed;
+}
+
+long simpleRandom::intRandom(long min, long max)
+{
+    //return (rand()%(max-min))+min;
+    return (long)(random()%(max-min)+min);
+}
+
+unsigned int simpleRandom::random()
+{
+    next = next * 1103515245 + 12345;
+    return (unsigned int)(next/65536) % 32768;
+}
+
+/*TRandomMersenne::TRandomMersenne()
 {
     seed = time(0);
     srand(seed);
@@ -84,8 +117,8 @@ long TRandomMersenne::IRandom(long min, long max) {
   if (r > max) r = max;
   if (max < min) return 0x80000000;
   return r;*/
-  return (rand()%(max-min))+min;
-}
+/*  return (rand()%(max-min))+min;
+}*/
 
 void nullRNG::log()
 {

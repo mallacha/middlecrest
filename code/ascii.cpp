@@ -48,11 +48,11 @@ int * IDisplay::getRandomStartingLocation()
     IRand * random = locator::getRNG();
     tile *** dungeon = map->getGrid();
 
-    random_xy[0] = random->IRandom(1, getDimX()-1);
-    random_xy[1] = random->IRandom(1, getDimY()-1);
+    random_xy[0] = random->intRandom(1, getDimX()-1);
+    random_xy[1] = random->intRandom(1, getDimY()-1);
     while(dungeon[0][random_xy[1]][random_xy[0]].isAttribute(IMPASSIBLE_ATTRIBUTE)) {
-        random_xy[0] = random->IRandom(1, getDimX()-1);
-        random_xy[1] = random->IRandom(1, getDimY()-1);
+        random_xy[0] = random->intRandom(1, getDimX()-1);
+        random_xy[1] = random->intRandom(1, getDimY()-1);
     }
 
     return random_xy;
@@ -64,7 +64,7 @@ unsigned int IDisplay::createGameMap(LocationType type)
     IRand * random = locator::getRNG();
 
     sqlite3_stmt* res;
-    const long seed = random->RandomInit(rand());
+    const long seed = random->randomInit(rand());
 
     database->saveQuery(res, "INSERT INTO maps (is_dungeon, zone_x, zone_y, map_seed, environ) VALUES (1, 3, 11, %d, %d);", 150, seed, type);
     sqlite3_finalize(res);

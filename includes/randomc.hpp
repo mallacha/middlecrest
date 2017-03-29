@@ -83,18 +83,32 @@ class IRand
 //Interface for RNG
 {
     public:
-        virtual ~IRand() = 0;
+        virtual ~IRand();
 
-        virtual unsigned long RandomInit(long int) = 0;//re-seed generator
-        virtual long IRandom(long, long) = 0; //random integer
+        virtual long randomInit(long) = 0;//re-seed generator
+        virtual long intRandom(long, long) = 0; //random integer
         virtual long int getSeed() = 0;
-
-            #ifdef UNIT_TEST
-                virtual unsigned long BRandom() = 0;
-            #endif
 };
 
-class TRandomMersenne : public IRand {                  // encapsulate random number generator
+class simpleRandom : public IRand
+//Simple RNG using rand()
+{
+    public:
+        simpleRandom();
+        ~simpleRandom();
+
+        inline long randomInit(long int);
+        inline long intRandom(long, long);
+        inline long int getSeed() { return seed; }
+
+    private:
+        inline unsigned int random();
+
+        unsigned long next;
+        unsigned long seed;
+};
+
+/*class TRandomMersenne : public IRand {                  // encapsulate random number generator
   enum constants {
 #if 1
     // define constants for MT11213A
@@ -121,15 +135,15 @@ class TRandomMersenne : public IRand {                  // encapsulate random nu
       unsigned long mt[N];                       // state vector
       long int seed;                             // seed
       int mti;                                   // index into mt
-};
+};*/
 
 class nullRNG : public IRand
 {
     public:
         nullRNG() { logger=NULL; }
         ~nullRNG() {}
-        inline unsigned long RandomInit(long int) { log(); return 0; }
-        inline long IRandom(long, long) { log(); return 0; }
+        inline long randomInit(long int value) { log(); return 0; }
+        inline long intRandom(long value1, long value2) { log(); return 0; }
         inline long getSeed() { log(); return 0; }
 
             #ifdef UNIT_TEST
