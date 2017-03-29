@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     #endif
 
     //Random number generator
-    TRandomMersenne * random = new TRandomMersenne();
+    IRand * random = new simpleRandom();
     locator::provide(random);
 
     //Database service
@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
 
 
     //Begin game
-/*    display->create();
+    display->create();
 
     loadSavedGame();
 
@@ -77,6 +77,6 @@ int main(int argc, char *argv[])
     game->save();
 
     //Create monsters and monster system
-    //Finish world creation (need to connect maps/zones)*/
+    //Finish world creation (need to connect maps/zones)
 
 }
