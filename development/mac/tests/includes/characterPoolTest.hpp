@@ -2,7 +2,7 @@
 #define CHARACTERPOOLTEST_H
 
 #pragma once
-#include "../../includes/characterPool.hpp"
+#include "../../../../includes/characterPool.hpp"
 
 class characterPoolTest : public characterPool
 {

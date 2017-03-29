@@ -5,7 +5,6 @@
 		<Option title="Project1" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="game\;" />
 		<Build>
 			<Target title="default">
 				<Option output="tests" prefix_auto="1" extension_auto="1" />
@@ -27,7 +26,7 @@
 			<Add option="../../../../tools/sqlite/precompiled/mac/sqlite3.o" />
 		</Linker>
 		<ExtraCommands>
-			<Add before="g++ -O3 -DDEBUG -DBETA -DUNIT_TEST -c ../../code/location.cpp -o ../../code/location.o" />
+			<Add before="g++ -O3 -DDEBUG -DBETA -DUNIT_TEST -c ../../../../code/location.cpp -o ../../../../code/location.o" />
 			<Mode after="always" />
 		</ExtraCommands>
 		<Unit filename="../../../../code/ascii.cpp" />
@@ -38,7 +37,9 @@
 		<Unit filename="../../../../code/database.cpp" />
 		<Unit filename="../../../../code/event.cpp" />
 		<Unit filename="../../../../code/game.cpp" />
-		<Unit filename="../../../../code/location.cpp" />
+		<Unit filename="../../../../code/location.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="../../../../code/logging.cpp" />
 		<Unit filename="../../../../code/mersenne.cpp" />
 		<Unit filename="../../../../code/object.cpp" />
@@ -56,7 +57,9 @@
 		<Unit filename="../includes/characterPoolTest.hpp" />
 		<Unit filename="../includes/displayTest.hpp" />
 		<Unit filename="../includes/poolTest.hpp" />
-		<Unit filename="../includes/randomcTest.hpp" />
+		<Unit filename="../includes/randomcTest.hpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="../includes/testHarness.hpp" />
 		<Unit filename="../main.cpp" />
 		<Extensions>
