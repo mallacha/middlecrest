@@ -64,15 +64,13 @@
 		<Unit filename="../../code/logging.cpp">
 			<Option virtualFolder="game/" />
 		</Unit>
-		<Unit filename="../../code/mersenne.cpp">
-			<Option virtualFolder="game/" />
-		</Unit>
 		<Unit filename="../../code/object.cpp">
 			<Option virtualFolder="game/" />
 		</Unit>
 		<Unit filename="../../code/pool.cpp">
 			<Option virtualFolder="game/" />
 		</Unit>
+		<Unit filename="../../code/randomc.cpp" />
 		<Unit filename="../../code/screens.cpp">
 			<Option virtualFolder="game/" />
 		</Unit>

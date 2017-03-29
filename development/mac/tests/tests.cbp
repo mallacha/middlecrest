@@ -33,9 +33,9 @@
 		<Unit filename="../../../code/game.cpp" />
 		<Unit filename="../../../code/location.cpp" />
 		<Unit filename="../../../code/logging.cpp" />
-		<Unit filename="../../../code/mersenne.cpp" />
 		<Unit filename="../../../code/object.cpp" />
 		<Unit filename="../../../code/pool.cpp" />
+		<Unit filename="../../../code/randomc.cpp" />
 		<Unit filename="../../../code/screens.cpp" />
 		<Unit filename="../../../code/service.cpp" />
 		<Unit filename="../../../code/turnBased.cpp" />
