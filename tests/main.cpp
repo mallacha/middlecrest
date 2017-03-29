@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
 {
     locator::initialize();
 
-    TRandomMersenne * random = new TRandomMersenne();
+    IRand * random = new simpleRandom();
     locator::provide(random);
 
     //Database service

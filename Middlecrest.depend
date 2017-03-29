@@ -1,17 +1,18 @@
 # depslib dependency file v1.0
-1490590169 source:c:\sean\game2\code\ascii.cpp
+1490592188 source:c:\sean\game2\code\ascii.cpp
 	"../includes/ascii.hpp"
 	"../includes/service.hpp"
 
-1490590169 c:\sean\game2\includes\ascii.hpp
+1490591793 c:\sean\game2\includes\ascii.hpp
 	"lib.h"
 	"location.hpp"
 
-1490172356 c:\sean\game2\includes\lib.h
+1490610396 c:\sean\game2\includes\lib.h
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
 	<limits.h>
+	<ncurses.h>
 	<curses.h>
 	<assert.h>
 	<iostream>
@@ -28,7 +29,7 @@
 1490405177 c:\sean\game2\includes\logging.hpp
 	"lib.h"
 
-1490590169 c:\sean\game2\includes\location.hpp
+1490591434 c:\sean\game2\includes\location.hpp
 	"logging.hpp"
 	"configuration.hpp"
 
@@ -58,7 +59,7 @@
 	"lib.h"
 	"logging.hpp"
 
-1490559492 c:\sean\game2\includes\characterpool.hpp
+1490597671 c:\sean\game2\includes\characterpool.hpp
 	"lib.h"
 	"configuration.hpp"
 	"pool.hpp"
@@ -107,7 +108,7 @@
 	"../includes/cache.hpp"
 	"../includes/utility.hpp"
 
-1490557059 source:c:\sean\game2\code\character.cpp
+1490681513 source:c:\sean\game2\code\character.cpp
 	"../includes/service.hpp"
 	"../includes/utility.hpp"
 
@@ -124,7 +125,7 @@
 	"../includes/command.hpp"
 	"../includes/service.hpp"
 
-1490406275 source:c:\sean\game2\code\database.cpp
+1490681513 source:c:\sean\game2\code\database.cpp
 	"../includes/database.hpp"
 	"../includes/configuration.hpp"
 	"../includes/service.hpp"
@@ -142,11 +143,11 @@
 	"../includes/frustum.hpp"
 	"../includes/service.hpp"
 
-1490555013 source:c:\sean\game2\code\game.cpp
+1490681513 source:c:\sean\game2\code\game.cpp
 	"../includes/game.hpp"
 	"../includes/service.hpp"
 
-1490590400 source:c:\sean\game2\code\location.cpp
+1490681513 source:c:\sean\game2\code\location.cpp
 	"../includes/service.hpp"
 
 1490405276 source:c:\sean\game2\code\logging.cpp
@@ -194,10 +195,10 @@
 1490172356 c:\sean\game2\tests\includes\pooltest.hpp
 	"../../includes/pool.hpp"
 
-1490172356 c:\sean\game2\tests\includes\characterpooltest.hpp
+1490593928 c:\sean\game2\tests\includes\characterpooltest.hpp
 	"../../includes/characterPool.hpp"
 
-1490565500 c:\sean\game2\tests\includes\locationtest.hpp
+1490592055 c:\sean\game2\tests\includes\locationtest.hpp
 	"../../includes/location.hpp"
 
 1490411662 c:\sean\game2\tests\includes\displaytest.hpp

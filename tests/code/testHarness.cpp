@@ -83,9 +83,9 @@ void testHarness::RNGTests()
     incCoverageTotal(22);
 
     printf("Testing Random Number Generation...\n");
-    IRand * random = new TRandomMersenneTest();
-    random->RandomInit(200);
-    displayResult(random->IRandom(1, 50));
+    IRand * random = new simpleRandom();
+    random->randomInit(200);
+    displayResult(random->intRandom(1, 50));
 
     //All lines covered sufficiently
     incCoverageCurrent(22);
